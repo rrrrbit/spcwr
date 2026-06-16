@@ -108,6 +108,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""c77c5843-3668-42fb-a703-4e90f010f88c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -147,11 +156,112 @@ public partial class @Input: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0589cf52-bd90-49d4-a449-6fd7b8ed68a5"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ba986ff-39d1-4299-a46f-aa4966d36a4e"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerB"",
+            ""id"": ""d107fa69-4136-4615-b062-fdf09d9c4efe"",
+            ""actions"": [
+                {
+                    ""name"": ""turn"",
+                    ""type"": ""Value"",
+                    ""id"": ""1ce783ec-be32-432f-b7b5-8f26a2fca226"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""thrust"",
+                    ""type"": ""Button"",
+                    ""id"": ""3de52bdb-9110-4e9e-83a0-b2efa14f9fc5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""357b42bf-fef3-4535-9640-f820788596a8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""b5e69a1f-f3cf-452d-8f21-a829c257ec89"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""turn"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""ba2ebb06-22ed-48e6-8106-e59918ad12c1"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""f094fc41-acf2-427a-bd22-987b902a6c17"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0c28411-77a3-4623-a75c-a3d52168d6f8"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5423d5bd-4e9d-4d58-b6b3-35542aea78a0"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -225,11 +335,18 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_PlayerA = asset.FindActionMap("PlayerA", throwIfNotFound: true);
         m_PlayerA_turn = m_PlayerA.FindAction("turn", throwIfNotFound: true);
         m_PlayerA_thrust = m_PlayerA.FindAction("thrust", throwIfNotFound: true);
+        m_PlayerA_shoot = m_PlayerA.FindAction("shoot", throwIfNotFound: true);
+        // PlayerB
+        m_PlayerB = asset.FindActionMap("PlayerB", throwIfNotFound: true);
+        m_PlayerB_turn = m_PlayerB.FindAction("turn", throwIfNotFound: true);
+        m_PlayerB_thrust = m_PlayerB.FindAction("thrust", throwIfNotFound: true);
+        m_PlayerB_shoot = m_PlayerB.FindAction("shoot", throwIfNotFound: true);
     }
 
     ~@Input()
     {
         UnityEngine.Debug.Assert(!m_PlayerA.enabled, "This will cause a leak and performance issues, Input.PlayerA.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PlayerB.enabled, "This will cause a leak and performance issues, Input.PlayerB.Disable() has not been called.");
     }
 
     /// <summary>
@@ -307,6 +424,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private List<IPlayerAActions> m_PlayerAActionsCallbackInterfaces = new List<IPlayerAActions>();
     private readonly InputAction m_PlayerA_turn;
     private readonly InputAction m_PlayerA_thrust;
+    private readonly InputAction m_PlayerA_shoot;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerA".
     /// </summary>
@@ -326,6 +444,10 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerA/thrust".
         /// </summary>
         public InputAction @thrust => m_Wrapper.m_PlayerA_thrust;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerA/shoot".
+        /// </summary>
+        public InputAction @shoot => m_Wrapper.m_PlayerA_shoot;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -358,6 +480,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @thrust.started += instance.OnThrust;
             @thrust.performed += instance.OnThrust;
             @thrust.canceled += instance.OnThrust;
+            @shoot.started += instance.OnShoot;
+            @shoot.performed += instance.OnShoot;
+            @shoot.canceled += instance.OnShoot;
         }
 
         /// <summary>
@@ -375,6 +500,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @thrust.started -= instance.OnThrust;
             @thrust.performed -= instance.OnThrust;
             @thrust.canceled -= instance.OnThrust;
+            @shoot.started -= instance.OnShoot;
+            @shoot.performed -= instance.OnShoot;
+            @shoot.canceled -= instance.OnShoot;
         }
 
         /// <summary>
@@ -408,6 +536,124 @@ public partial class @Input: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerAActions" /> instance referencing this action map.
     /// </summary>
     public PlayerAActions @PlayerA => new PlayerAActions(this);
+
+    // PlayerB
+    private readonly InputActionMap m_PlayerB;
+    private List<IPlayerBActions> m_PlayerBActionsCallbackInterfaces = new List<IPlayerBActions>();
+    private readonly InputAction m_PlayerB_turn;
+    private readonly InputAction m_PlayerB_thrust;
+    private readonly InputAction m_PlayerB_shoot;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "PlayerB".
+    /// </summary>
+    public struct PlayerBActions
+    {
+        private @Input m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public PlayerBActions(@Input wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerB/turn".
+        /// </summary>
+        public InputAction @turn => m_Wrapper.m_PlayerB_turn;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerB/thrust".
+        /// </summary>
+        public InputAction @thrust => m_Wrapper.m_PlayerB_thrust;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerB/shoot".
+        /// </summary>
+        public InputAction @shoot => m_Wrapper.m_PlayerB_shoot;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_PlayerB; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="PlayerBActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(PlayerBActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="PlayerBActions" />
+        public void AddCallbacks(IPlayerBActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerBActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerBActionsCallbackInterfaces.Add(instance);
+            @turn.started += instance.OnTurn;
+            @turn.performed += instance.OnTurn;
+            @turn.canceled += instance.OnTurn;
+            @thrust.started += instance.OnThrust;
+            @thrust.performed += instance.OnThrust;
+            @thrust.canceled += instance.OnThrust;
+            @shoot.started += instance.OnShoot;
+            @shoot.performed += instance.OnShoot;
+            @shoot.canceled += instance.OnShoot;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PlayerBActions" />
+        private void UnregisterCallbacks(IPlayerBActions instance)
+        {
+            @turn.started -= instance.OnTurn;
+            @turn.performed -= instance.OnTurn;
+            @turn.canceled -= instance.OnTurn;
+            @thrust.started -= instance.OnThrust;
+            @thrust.performed -= instance.OnThrust;
+            @thrust.canceled -= instance.OnThrust;
+            @shoot.started -= instance.OnShoot;
+            @shoot.performed -= instance.OnShoot;
+            @shoot.canceled -= instance.OnShoot;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerBActions.UnregisterCallbacks(IPlayerBActions)" />.
+        /// </summary>
+        /// <seealso cref="PlayerBActions.UnregisterCallbacks(IPlayerBActions)" />
+        public void RemoveCallbacks(IPlayerBActions instance)
+        {
+            if (m_Wrapper.m_PlayerBActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="PlayerBActions.AddCallbacks(IPlayerBActions)" />
+        /// <seealso cref="PlayerBActions.RemoveCallbacks(IPlayerBActions)" />
+        /// <seealso cref="PlayerBActions.UnregisterCallbacks(IPlayerBActions)" />
+        public void SetCallbacks(IPlayerBActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerBActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerBActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PlayerBActions" /> instance referencing this action map.
+    /// </summary>
+    public PlayerBActions @PlayerB => new PlayerBActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -494,5 +740,41 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnThrust(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoot(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerB" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="PlayerBActions.AddCallbacks(IPlayerBActions)" />
+    /// <seealso cref="PlayerBActions.RemoveCallbacks(IPlayerBActions)" />
+    public interface IPlayerBActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "turn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTurn(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "thrust" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThrust(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

@@ -1,18 +1,25 @@
 using RBitUtils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
     public MGR_Input input;
     public bool isPlayerA;
+    public float shootInterval;
+    float shootTimer;
 
     public float rotSpeed;
     public float thrust;
-    public Transform star;
-    public float gravity;
+    public Star star;
+    public GameObject pellet;
+    public float shootVel;
+    public float shootOffset;
 
+    public LayerMask killLayers;
+    
     Rigidbody2D rb;
-    BoxCollider2D bc;
+    Collider2D bc;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,13 +27,20 @@ public class Ship : MonoBehaviour
     {
         
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
+        bc = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        ShipInput shipInput = isPlayerA ? input.playerA : input.playerB;
+
+        shootTimer = Mathf.Max(0f, shootTimer - Time.deltaTime);
+        if (shootTimer <= 0 && shipInput.shoot)
+        {
+            Shoot();
+            shootTimer = shootInterval;
+        }
     }
 
     private void FixedUpdate()
@@ -37,8 +51,29 @@ public class Ship : MonoBehaviour
         rb.AddForce(transform.right * thrust * shipInput.thrust);
         Debug.DrawRay(transform.position, transform.right * thrust * shipInput.thrust, Color.blue);
 
-        Vector2 d = star.position - transform.position;
-        rb.AddForce(d.WithMag(1/d.sqrMagnitude) * gravity);
-        Debug.DrawRay(transform.position, d.WithMag(1 / d.sqrMagnitude) * gravity, Color.red);
+        Vector2 d = star.transform.position - transform.position;
+        rb.AddForce(d.WithMag(1/d.sqrMagnitude) * star.gravity);
+        Debug.DrawRay(transform.position, d.WithMag(1 / d.sqrMagnitude) * star.gravity, Color.red);
+    }
+
+    void Shoot()
+    {
+        GameObject thisPellet = Instantiate(pellet);
+        thisPellet.transform.position = transform.position + transform.right * shootOffset;
+        thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * shootVel;
+        thisPellet.GetComponent<Wrap>().bounds = GetComponent<Wrap>().bounds;
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (killLayers.Contains(collision.gameObject))
+        {
+            Die();
+        }
     }
 }
