@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    public MGR_Input input;
+    public bool isPlayerA;
+
     public float rotSpeed;
     public float thrust;
     public Transform star;
@@ -10,7 +13,6 @@ public class Ship : MonoBehaviour
 
     Rigidbody2D rb;
     BoxCollider2D bc;
-    MGR_Input input;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,9 +31,11 @@ public class Ship : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.angularVelocity = rotSpeed * input.playerA.turn;
-        rb.AddForce(transform.right * thrust * input.playerA.thrust);
-        Debug.DrawRay(transform.position, transform.right * thrust * input.playerA.thrust, Color.blue);
+        ShipInput shipInput = isPlayerA ? input.playerA : input.playerB;
+        
+        rb.angularVelocity = rotSpeed * shipInput.turn;
+        rb.AddForce(transform.right * thrust * shipInput.thrust);
+        Debug.DrawRay(transform.position, transform.right * thrust * shipInput.thrust, Color.blue);
 
         Vector2 d = star.position - transform.position;
         rb.AddForce(d.WithMag(1/d.sqrMagnitude) * gravity);

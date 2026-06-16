@@ -215,6 +215,10 @@ namespace RBitUtils
     public static class MathPlus
     {
         public static float SQRT2OVER2 = Mathf.Sqrt(2) / 2;
+        public static float Wrap(float value, float min, float max)
+        {
+            return min + (value - min) % (max - min);
+        }
     }
 
     public static class VectorPlus
