@@ -1,7 +1,7 @@
 using RBitUtils;
 using UnityEngine;
 
-public class shipControl : MonoBehaviour
+public class Ship : MonoBehaviour
 {
     public float rotSpeed;
     public float thrust;
@@ -10,17 +10,13 @@ public class shipControl : MonoBehaviour
 
     Rigidbody2D rb;
     BoxCollider2D bc;
-    Input input;
-    Input.PlayerAActions playerA;
+    MGR_Input input;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        input = new Input();
-        input.Enable();
-        playerA = input.PlayerA;
-        playerA.Enable();
+        
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
     }
@@ -28,15 +24,17 @@ public class shipControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(playerA.turn.ReadValue<float>());
+        
     }
 
     private void FixedUpdate()
     {
-        rb.angularVelocity = rotSpeed * playerA.turn.ReadValue<float>();
-        rb.AddForce(transform.right * thrust * playerA.thrust.ReadValue<float>());
-        Vector2 d = star.position - transform.position;
+        rb.angularVelocity = rotSpeed * input.playerA.turn;
+        rb.AddForce(transform.right * thrust * input.playerA.thrust);
+        Debug.DrawRay(transform.position, transform.right * thrust * input.playerA.thrust, Color.blue);
 
+        Vector2 d = star.position - transform.position;
         rb.AddForce(d.WithMag(1/d.sqrMagnitude) * gravity);
+        Debug.DrawRay(transform.position, d.WithMag(1 / d.sqrMagnitude) * gravity, Color.red);
     }
 }
