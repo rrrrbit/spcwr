@@ -17,6 +17,7 @@ public class Ship : MonoBehaviour
     public float shootOffset;
 
     public LayerMask killLayers;
+    public ParticleSystem exhaustParticle;
     
     Rigidbody2D rb;
     Collider2D bc;
@@ -40,6 +41,18 @@ public class Ship : MonoBehaviour
         {
             Shoot();
             shootTimer = shootInterval;
+        }
+
+        if (shipInput.thrust == 1)
+        {
+            exhaustParticle.Play();
+        }
+        else
+        {
+            if (exhaustParticle.isPlaying)
+            {
+                exhaustParticle.Stop();
+            }
         }
     }
 

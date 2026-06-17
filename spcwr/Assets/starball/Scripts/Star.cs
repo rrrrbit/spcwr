@@ -23,7 +23,7 @@ public class Star : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         print(collision.gameObject.name);
         if (knockLayers.Contains(collision.gameObject))
