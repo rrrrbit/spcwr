@@ -54,6 +54,11 @@ public class Ship : MonoBehaviour
                 exhaustParticle.Stop();
             }
         }
+
+        GetComponent<SpriteRenderer>().color = isPlayerA ? Color.cyan : Color.orange;
+
+        var exhaustParticleMainModule = exhaustParticle.main;
+        exhaustParticleMainModule.startColor = isPlayerA ? Color.cyan : Color.orange;
     }
 
     private void FixedUpdate()

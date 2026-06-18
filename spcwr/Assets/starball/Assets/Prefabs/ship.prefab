@@ -53,7 +53,7 @@ MonoBehaviour:
   isPlayerA: 1
   shootInterval: 0.3
   rotSpeed: -270
-  thrust: 30
+  thrust: 40
   star: {fileID: 0}
   pellet: {fileID: 1490460933987068758, guid: 9d2f49f8f9576ab42b1e9264563676c3, type: 3}
   shootVel: 50
@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounds: {fileID: 0}
+  clonePrefab: {fileID: 2007642805171788629, guid: f3a04117cdaabf04a9adb5ac3621c156, type: 3}
 --- !u!212 &8307867092022799509
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -187,7 +188,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -257,7 +258,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4196029740097240179}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.05
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -2298,7 +2299,7 @@ ParticleSystem:
     m_Curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2

@@ -17,12 +17,18 @@ public class Pellet : MonoBehaviour
         lifeTimer -= Time.deltaTime;
         if (lifeTimer < 0)
         {
+            var pMain = GetComponentInChildren<ParticleSystem>().main;
+            pMain.stopAction = ParticleSystemStopAction.Destroy;
+            transform.DetachChildren();
             Destroy(gameObject);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        var pMain = GetComponentInChildren<ParticleSystem>().main;
+        pMain.stopAction = ParticleSystemStopAction.Destroy;
+        transform.DetachChildren();
         Destroy(gameObject);
     }
 }
