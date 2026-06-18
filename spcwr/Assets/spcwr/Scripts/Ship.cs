@@ -35,7 +35,7 @@ public class Ship : MonoBehaviour
     void Update()
     {
         ShipInput shipInput = isPlayerA ? input.playerA : input.playerB;
-
+        var ptclEmission = exhaustParticle.emission;
         shootTimer = Mathf.Max(0f, shootTimer - Time.deltaTime);
         if (shootTimer <= 0 && shipInput.shoot)
         {
@@ -43,17 +43,7 @@ public class Ship : MonoBehaviour
             shootTimer = shootInterval;
         }
 
-        if (shipInput.thrust == 1)
-        {
-            exhaustParticle.Play();
-        }
-        else
-        {
-            if (exhaustParticle.isPlaying)
-            {
-                exhaustParticle.Stop();
-            }
-        }
+        ptclEmission.enabled = shipInput.thrust == 1;
 
         GetComponent<SpriteRenderer>().color = isPlayerA ? Color.cyan : Color.orange;
 

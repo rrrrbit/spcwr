@@ -22,7 +22,12 @@ public class Star : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        warp.SetVector("_warpPos", transform.position);
+        var wrap = GetComponent<Wrap>();
+        
+        warp.SetVector("_warpPos0", transform.position);
+        warp.SetVector("_warpPos1", wrap.clones[0].transform.position);
+        warp.SetVector("_warpPos2", wrap.clones[1].transform.position);
+        warp.SetVector("_warpPos3", wrap.clones[2].transform.position);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

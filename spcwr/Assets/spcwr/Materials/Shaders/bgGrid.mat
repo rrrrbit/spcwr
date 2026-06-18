@@ -68,14 +68,19 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _ZWrite: 0
-    - _warpRadius: 1.5
-    - _warpStrength: 2
-    - _width: 0.05
+    - _warpPower: 1
+    - _warpRadius: 2
+    - _warpStrength: 3
+    - _width: 0.03
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _offset: {r: 0, g: 0, b: 0, a: 0}
-    - _size: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _size: {r: 0.3, g: 0.3, b: 0, a: 0}
     - _warpPos: {r: -18.040016, g: 23.116257, b: 0, a: 0}
+    - _warpPos0: {r: 0, g: 0, b: 0, a: 0}
+    - _warpPos1: {r: 60, g: 0, b: 0, a: 0}
+    - _warpPos2: {r: 0, g: 60, b: 0, a: 0}
+    - _warpPos3: {r: 60, g: 60, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

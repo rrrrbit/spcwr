@@ -6,7 +6,7 @@ public class Wrap : MonoBehaviour
     public RectTransform bounds;
     public GameObject clonePrefab;
     Bounds wrapBoundsWorld;
-    GameObject[] clones;
+    public GameObject[] clones;
     Vector3 clonePos;
 
     private void Start()
@@ -39,6 +39,14 @@ public class Wrap : MonoBehaviour
             );
 
         transform.position = clampPos;
+    }
+
+    private void OnDestroy()
+    {
+        foreach (GameObject obj in clones)
+        {
+            Destroy(obj);
+        }
     }
 
     void UpdateClones()
