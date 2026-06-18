@@ -8,6 +8,8 @@ public class Star : MonoBehaviour
     public Rigidbody2D rb;
     public LayerMask knockLayers;
 
+    public Material warp;
+
     public float knockStrength;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,7 +22,7 @@ public class Star : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        warp.SetVector("_warpPos", transform.position);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
