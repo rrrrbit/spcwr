@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8643629066463437721}
   - component: {fileID: 1748066861221397907}
   - component: {fileID: 4798192285386215110}
+  - component: {fileID: 2834180268631694909}
   - component: {fileID: 8307867092022799509}
   - component: {fileID: 2960190537259376828}
   - component: {fileID: 8872411953031730904}
@@ -53,8 +54,8 @@ MonoBehaviour:
   input: {fileID: 0}
   isPlayerA: 1
   shootInterval: 0.3
-  rotSpeed: -360
-  thrust: 40
+  rotSpeed: -270
+  thrust: 25
   star: {fileID: 0}
   pellet: {fileID: 1490460933987068758, guid: 9d2f49f8f9576ab42b1e9264563676c3, type: 3}
   shootVel: 50
@@ -78,6 +79,29 @@ MonoBehaviour:
   bounds: {fileID: 0}
   clonePrefab: {fileID: 2007642805171788629, guid: f3a04117cdaabf04a9adb5ac3621c156, type: 3}
   clones: []
+--- !u!114 &2834180268631694909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007642805171788629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d01f78f5175f57499574176ddaade30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  star: {fileID: 0}
+  start: {fileID: 1770244356254928443}
+  scene:
+    m_Handle: 0
+  maxFrameSim: 1000
+  maxWrap: 1
+  positions: []
+  startVel: 40
+  tracer: {fileID: 0}
+  tracerRb: {fileID: 0}
 --- !u!212 &8307867092022799509
 SpriteRenderer:
   m_ObjectHideFlags: 0

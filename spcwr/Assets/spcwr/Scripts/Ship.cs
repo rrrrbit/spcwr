@@ -60,12 +60,9 @@ public class Ship : MonoBehaviour
         Debug.DrawRay(transform.position, transform.right * thrust * shipInput.thrust, Color.blue);
 
         Vector2 totalGrav = Vector2.zero;
-        Vector2 d = star.transform.position - transform.position;
-        totalGrav += d.WithMag(1 / d.sqrMagnitude);
-        Debug.DrawRay(transform.position, d.WithMag(1 / d.sqrMagnitude) * star.gravity, Color.orange);
         foreach (GameObject obj in star.GetComponent<Wrap>().clones)
         {
-            d = obj.transform.position - transform.position;
+            Vector2 d = obj.transform.position - transform.position;
             Debug.DrawRay(transform.position, d.WithMag(1 / d.sqrMagnitude) * star.gravity, Color.orange);
 
             totalGrav += d.WithMag(1 / d.sqrMagnitude);

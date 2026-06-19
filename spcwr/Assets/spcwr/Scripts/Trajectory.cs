@@ -1,51 +1,80 @@
 using RBitUtils;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Trajectory : MonoBehaviour
 {
+    public bool active;
+    
     public Star star;
-    public Ship ship;
     public Transform start;
     public Scene scene;
     public PhysicsScene2D pScene;
     public int maxFrameSim;
-    public Vector2[] positions;
+    public int maxWrap;
+    public List<Vector2> positions;
     public float startVel;
-    public Rigidbody2D rb;
+    public GameObject tracer;
+    public Rigidbody2D tracerRb;
+
+    public EdgeCollider2D edgeCollider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        tracerRb = tracer.GetComponent<Rigidbody2D>();
         scene = SceneManager.CreateScene("trajectoryScene", new CreateSceneParameters(LocalPhysicsMode.Physics2D));
         pScene = scene.GetPhysicsScene2D();
-        SceneManager.MoveGameObjectToScene(gameObject, scene);
+        SceneManager.MoveGameObjectToScene(tracer, scene);
 
-        positions = new Vector2[maxFrameSim];
+        positions = new List<Vector2>();
+    }
+    
+    void UpdateTrajectory()
+    {
+        tracer.transform.SetPositionAndRotation(start.position, start.rotation);
+        tracerRb.linearVelocity = transform.right * startVel;
+
+        int currentWraps = 0;
+        int currentFrames = 0;
+        bool ignoreForces = false;
+        
+        positions.Clear();
+        while (currentFrames < maxFrameSim && currentWraps < maxWrap)
+        {
+            if (!ignoreForces)
+            {
+                Vector2 totalGrav = Vector2.zero;
+                foreach (GameObject obj in star.GetComponent<Wrap>().clones)
+                {
+                    Vector2 d = obj.transform.position - tracer.transform.position;
+                    totalGrav += d.WithMag(1 / d.sqrMagnitude);
+                }
+                tracerRb.AddForce(totalGrav * star.gravity);
+            }
+
+            var oldPos = tracer.transform.position;
+            pScene.Simulate(Time.fixedDeltaTime);
+
+
+            if (tracerRb.linearVelocity.sqrMagnitude > startVel*startVel*3) ignoreForces = true;
+            //positions[i] = transform.position;
+            currentFrames++;
+            if (tracer.GetComponent<Wrap>().WrapPos()) currentWraps++;
+            else Debug.DrawLine(oldPos, tracer.transform.position, Color.green);      
+            positions.Append(tracer.transform.position);
+        }
+
+        print(positions.Count);
+        edgeCollider.SetPoints(positions);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = start.position;
-        transform.rotation = start.rotation;
-        rb.linearVelocity = transform.right * startVel;
-        for (int i = 0; i < maxFrameSim; i++)
-        {
-            Vector2 totalGrav = Vector2.zero;
-            Vector2 d = star.transform.position - transform.position;
-            totalGrav += d.WithMag(1 / d.sqrMagnitude);
-            foreach (GameObject obj in star.GetComponent<Wrap>().clones)
-            {
-                d = obj.transform.position - transform.position;
-                totalGrav += d.WithMag(1 / d.sqrMagnitude);
-            }
-            rb.AddForce(totalGrav * star.gravity);
-
-            var oldPos = transform.position;
-            pScene.Simulate(Time.fixedDeltaTime);
-            positions[i] = transform.position;
-            Debug.DrawLine(oldPos, transform.position, Color.green);
-        }
+        if (!active) return;
+        UpdateTrajectory();
     }
 }
