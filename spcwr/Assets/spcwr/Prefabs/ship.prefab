@@ -35,6 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3022469359303724068}
+  - {fileID: 1770244356254928443}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1748066861221397907
@@ -52,7 +53,7 @@ MonoBehaviour:
   input: {fileID: 0}
   isPlayerA: 1
   shootInterval: 0.3
-  rotSpeed: -270
+  rotSpeed: -360
   thrust: 40
   star: {fileID: 0}
   pellet: {fileID: 1490460933987068758, guid: 9d2f49f8f9576ab42b1e9264563676c3, type: 3}
@@ -218,6 +219,37 @@ PolygonCollider2D:
       - {x: -0.671875, y: -0.5}
       - {x: -0.62890625, y: -0.5}
   m_UseDelaunayMesh: 0
+--- !u!1 &2515324794532893793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1770244356254928443}
+  m_Layer: 6
+  m_Name: shootTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1770244356254928443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515324794532893793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8643629066463437721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4196029740097240179
 GameObject:
   m_ObjectHideFlags: 0

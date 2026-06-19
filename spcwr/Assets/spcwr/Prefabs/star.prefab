@@ -55,6 +55,7 @@ MonoBehaviour:
   knockLayers:
     serializedVersion: 2
     m_Bits: 256
+  warp: {fileID: 0}
   knockStrength: 5
 --- !u!114 &6892801256354142146
 MonoBehaviour:
@@ -70,6 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounds: {fileID: 0}
   clonePrefab: {fileID: 8320106773190102846, guid: b45a0917b3157594390f3c40495688ec, type: 3}
+  clones: []
 --- !u!212 &5755278984368339774
 SpriteRenderer:
   m_ObjectHideFlags: 0
