@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class Star : MonoBehaviour
 {
-    public float gravity;
     public Collider2D col;
     public Rigidbody2D rb;
     public LayerMask knockLayers;
 
     public Renderer bg;
-
-    public float knockStrength;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,7 +32,29 @@ public class Star : MonoBehaviour
         print(collision.gameObject.name);
         if (knockLayers.Contains(collision.gameObject))
         {
-            Vector2 force = (transform.position - collision.transform.position).normalized * knockStrength;
+            Vector3 d = (transform.position - collision.transform.position).normalized;
+
+
+            Debug.DrawRay(
+                transform.position,
+                collision.relativeVelocity,
+                Color.red, 3
+                );
+
+
+            Debug.DrawRay(
+                transform.position,
+                Vector3.Project(collision.relativeVelocity, d),
+                Color.green, 3
+                );
+            Debug.DrawRay(
+                transform.position,
+                d * 20,
+                Color.cyan, 3
+                );
+
+
+            Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR.game.settings.starPelletKnockback;
             rb.AddForce(force, ForceMode2D.Impulse);
         }
     }

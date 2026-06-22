@@ -51,15 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b7b8d8471b93e249a2de69172258d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 0}
   isPlayerA: 1
-  shootInterval: 0.3
-  rotSpeed: -270
-  thrust: 25
-  star: {fileID: 0}
-  pellet: {fileID: 1490460933987068758, guid: 9d2f49f8f9576ab42b1e9264563676c3, type: 3}
-  shootVel: 50
-  shootOffset: 2
+  shootOrigin: {fileID: 1770244356254928443}
   killLayers:
     serializedVersion: 2
     m_Bits: 448
@@ -92,16 +85,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  star: {fileID: 0}
   start: {fileID: 1770244356254928443}
   scene:
     m_Handle: 0
-  maxFrameSim: 1000
-  maxWrap: 1
   positions: []
-  startVel: 40
   tracer: {fileID: 0}
   tracerRb: {fileID: 0}
+  edgeCollider: {fileID: 0}
 --- !u!212 &8307867092022799509
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -146,8 +136,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 29d4956b8498b86448b134b15f4b9217, type: 3}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a77f8b3b88848ed41b5bc81034c0e56c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -268,7 +258,7 @@ Transform:
   m_GameObject: {fileID: 2515324794532893793}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -390,8 +380,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.5
+      scalar: 0.25
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -443,8 +433,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 5
+      scalar: 50
+      minScalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -497,7 +487,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1144,7 +1134,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2

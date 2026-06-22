@@ -1,81 +1,69 @@
+using JetBrains.Annotations;
 using RBitUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
-    public MGR_Input input;
     public bool isPlayerA;
-    public float shootInterval;
     float shootTimer;
 
-    public float rotSpeed;
-    public float thrust;
-    public Star star;
-    public GameObject pellet;
-    public float shootVel;
-    public float shootOffset;
+    public Transform shootOrigin;
 
     public LayerMask killLayers;
     public ParticleSystem exhaustParticle;
     
     Rigidbody2D rb;
-    Collider2D bc;
-
+    ShipInput shipInput;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ShipInput shipInput = isPlayerA ? input.playerA : input.playerB;
+        shipInput = isPlayerA ? MGR.input.playerA : MGR.input.playerB;
         var ptclEmission = exhaustParticle.emission;
         shootTimer = Mathf.Max(0f, shootTimer - Time.deltaTime);
         if (shootTimer <= 0 && shipInput.shoot)
         {
             Shoot();
-            shootTimer = shootInterval;
+            shootTimer = MGR.game.settings.shipReloadTime;
         }
 
         ptclEmission.enabled = shipInput.thrust == 1;
 
-        GetComponent<SpriteRenderer>().color = isPlayerA ? Color.cyan : Color.orange;
-
-        var exhaustParticleMainModule = exhaustParticle.main;
-        exhaustParticleMainModule.startColor = isPlayerA ? Color.cyan : Color.orange;
+        foreach (GameObject i in GetComponent<Wrap>().clones)
+        {
+            i.GetComponent<SpriteRenderer>().sprite = isPlayerA ? MGR.game.spriteShipA : MGR.game.spriteShipB;
+        }
     }
 
     private void FixedUpdate()
     {
-        ShipInput shipInput = isPlayerA ? input.playerA : input.playerB;
-        
-        rb.angularVelocity = rotSpeed * shipInput.turn;
-        rb.AddForce(transform.right * thrust * shipInput.thrust);
-        Debug.DrawRay(transform.position, transform.right * thrust * shipInput.thrust, Color.blue);
+        Star star = MGR.game.star;
+
+        rb.angularVelocity = MGR.game.settings.shipTurnVel * shipInput.turn;
+        rb.AddForce(shipInput.thrust * MGR.game.settings.shipThrust * transform.right);
 
         Vector2 totalGrav = Vector2.zero;
         foreach (GameObject obj in star.GetComponent<Wrap>().clones)
         {
             Vector2 d = obj.transform.position - transform.position;
-            Debug.DrawRay(transform.position, d.WithMag(1 / d.sqrMagnitude) * star.gravity, Color.orange);
-
             totalGrav += d.WithMag(1 / d.sqrMagnitude);
         }
-        rb.AddForce(totalGrav * star.gravity);
-        Debug.DrawRay(transform.position, totalGrav * star.gravity, Color.red);
+        rb.AddForce(totalGrav * MGR.game.settings.starGravity);
     }
 
     void Shoot()
     {
-        GameObject thisPellet = Instantiate(pellet);
-        thisPellet.transform.position = transform.position + transform.right * shootOffset;
-        thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * shootVel;
+        GameObject thisPellet = Instantiate(MGR.game.pelletPrefab);
+        thisPellet.transform.position = shootOrigin.position;
+        thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * MGR.game.settings.pelletSpeed;
         thisPellet.GetComponent<Wrap>().bounds = GetComponent<Wrap>().bounds;
     }
 

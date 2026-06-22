@@ -9,14 +9,10 @@ public class Trajectory : MonoBehaviour
 {
     public bool active;
     
-    public Star star;
     public Transform start;
     public Scene scene;
     public PhysicsScene2D pScene;
-    public int maxFrameSim;
-    public int maxWrap;
     public List<Vector2> positions;
-    public float startVel;
     public GameObject tracer;
     public Rigidbody2D tracerRb;
 
@@ -35,38 +31,39 @@ public class Trajectory : MonoBehaviour
     void UpdateTrajectory()
     {
         tracer.transform.SetPositionAndRotation(start.position, start.rotation);
-        tracerRb.linearVelocity = transform.right * startVel;
+        tracerRb.linearVelocity = transform.right * MGR.game.settings.laserStartVel;
 
         int currentWraps = 0;
-        int currentFrames = 0;
+        float accmLength = 0;
         bool ignoreForces = false;
         
         positions.Clear();
-        while (currentFrames < maxFrameSim && currentWraps < maxWrap)
+        while (accmLength < MGR.game.settings.laserMaxLength && currentWraps < MGR.game.settings.laserMaxWrap)
         {
             if (!ignoreForces)
             {
                 Vector2 totalGrav = Vector2.zero;
-                foreach (GameObject obj in star.GetComponent<Wrap>().clones)
+                foreach (GameObject obj in MGR.game.star.GetComponent<Wrap>().clones)
                 {
                     Vector2 d = obj.transform.position - tracer.transform.position;
                     totalGrav += d.WithMag(1 / d.sqrMagnitude);
                 }
-                tracerRb.AddForce(totalGrav * star.gravity);
+                tracerRb.AddForce(totalGrav * MGR.game.settings.starGravity);
             }
 
             var oldPos = tracer.transform.position;
             pScene.Simulate(Time.fixedDeltaTime);
 
 
-            if (tracerRb.linearVelocity.sqrMagnitude > startVel*startVel*3) ignoreForces = true;
+            if (tracerRb.linearVelocity.sqrMagnitude > MGR.game.settings.laserStartVel*MGR.game.settings.laserStartVel *3) ignoreForces = true;
             //positions[i] = transform.position;
-            currentFrames++;
+            accmLength+= (tracer.transform.position - oldPos).magnitude;
             if (tracer.GetComponent<Wrap>().WrapPos()) currentWraps++;
             else Debug.DrawLine(oldPos, tracer.transform.position, Color.green);      
-            positions.Append(tracer.transform.position);
+            positions.Add(tracer.transform.position);
         }
 
+        positions.RemoveAt(positions.Count-1);
         print(positions.Count);
         edgeCollider.SetPoints(positions);
     }
