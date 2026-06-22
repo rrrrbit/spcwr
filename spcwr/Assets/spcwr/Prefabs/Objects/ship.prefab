@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8643629066463437721}
   - component: {fileID: 1748066861221397907}
   - component: {fileID: 4798192285386215110}
-  - component: {fileID: 2834180268631694909}
   - component: {fileID: 8307867092022799509}
   - component: {fileID: 2960190537259376828}
   - component: {fileID: 8872411953031730904}
@@ -72,26 +71,6 @@ MonoBehaviour:
   bounds: {fileID: 0}
   clonePrefab: {fileID: 2007642805171788629, guid: f3a04117cdaabf04a9adb5ac3621c156, type: 3}
   clones: []
---- !u!114 &2834180268631694909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007642805171788629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d01f78f5175f57499574176ddaade30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 1
-  start: {fileID: 1770244356254928443}
-  scene:
-    m_Handle: 0
-  positions: []
-  tracer: {fileID: 0}
-  tracerRb: {fileID: 0}
-  edgeCollider: {fileID: 0}
 --- !u!212 &8307867092022799509
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1253,16 +1232,16 @@ ParticleSystem:
           time: 0.0026177987
           value: 0
           inSlope: 5.031594
-          outSlope: 12.73322
+          outSlope: 9.587331
           tangentMode: 69
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.08115253
+          time: 0.10692212
           value: 1
-          inSlope: 12.73322
-          outSlope: -1.0883199
+          inSlope: 9.587331
+          outSlope: -1.1197232
           tangentMode: 69
           weightedMode: 0
           inWeight: 0.33333334
@@ -1270,8 +1249,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -1.0883199
-          outSlope: -1.0883199
+          inSlope: -1.1197232
+          outSlope: -1.1197232
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -2958,11 +2937,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4207,13 +4186,13 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 0
     ratio: 1
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5054,6 +5033,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5081,7 +5061,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 2
+  m_LengthScale: 1
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0

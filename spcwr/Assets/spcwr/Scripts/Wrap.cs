@@ -35,13 +35,12 @@ public class Wrap : MonoBehaviour
         wrapBoundsWorld.max = corner[2]; // top right corner
     }
 
+    /// <summary>
+    /// Wrap a position within the boundary.
+    /// </summary>
+    /// <returns>Whether or not the position was changed i.e. wrapped around</returns>
     public bool WrapPos()
     {
-        
-        
-        
-
-
         Vector2 clampPos = new(
             MathPlus.Wrap(transform.position.x, wrapBoundsWorld.min.x, wrapBoundsWorld.max.x), // wrap x between minimum and maximum
             MathPlus.Wrap(transform.position.y, wrapBoundsWorld.min.y, wrapBoundsWorld.max.y) // same for y

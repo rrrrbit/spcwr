@@ -65,6 +65,7 @@ public class Ship : MonoBehaviour
         thisPellet.transform.position = shootOrigin.position;
         thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * MGR.game.settings.pelletSpeed;
         thisPellet.GetComponent<Wrap>().bounds = GetComponent<Wrap>().bounds;
+        rb.AddForce(-transform.right * MGR.game.settings.shipRecoil, ForceMode2D.Impulse);
     }
 
     void Die()

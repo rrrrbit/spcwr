@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class MGR_Game : MonoBehaviour
 {
     public Star star;
+    public MGR_Laser laser;
     public Ship shipA;
     public Ship shipB;
     public GameSettings settings;
@@ -16,7 +17,7 @@ public class MGR_Game : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        laser = GetComponent<MGR_Laser>();
     }
 
     // Update is called once per frame
