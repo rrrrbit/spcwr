@@ -77,6 +77,9 @@ public class Ship : MonoBehaviour
     {
         if (killLayers.Contains(collision.gameObject))
         {
+            MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 250, 100, 3);
+            MGR.vfx.Shake(4);
+            MGR.vfx.ImpactFrame(transform.position);
             Die();
         }
     }

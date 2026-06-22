@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MGR_Vfx : MonoBehaviour
@@ -7,6 +8,10 @@ public class MGR_Vfx : MonoBehaviour
     public float starShakeMultiplier;
 
     public ParticleSystem ptclBurstPrefab;
+
+    public Material radialImpactFrameMaterial;
+
+    public float impactFrameLength;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,10 +44,38 @@ public class MGR_Vfx : MonoBehaviour
         shape.rotation = new(0, 0, -arcDegrees / 2);
         var burst = emission.GetBurst(0);
 
-
+        burst.count = number;
 
         emission.SetBurst(0, burst);
 
         thisBurst.Play();
+    }
+
+    public void ImpactFrame(Vector3 center)
+    {
+        
+        StartCoroutine(ImpactFrameCoroutine(impactFrameLength, cam.cam.WorldToViewportPoint(center)-Vector3.one/2));
+    }
+
+    public IEnumerator ImpactFrameCoroutine(float length, Vector2 center )
+    {
+        radialImpactFrameMaterial.SetVector("_offset", center);
+        radialImpactFrameMaterial.SetInt("_on", 1);
+
+        radialImpactFrameMaterial.SetInt("_threshold", 1);
+        radialImpactFrameMaterial.SetInt("_invert", 1);
+
+        yield return new WaitForSeconds(length);
+
+        radialImpactFrameMaterial.SetInt("_invert", 0);
+
+        yield return new WaitForSeconds(length);
+
+        radialImpactFrameMaterial.SetInt("_threshold", 0);
+        radialImpactFrameMaterial.SetInt("_invert", 1);
+
+        yield return new WaitForSeconds(length);
+
+        radialImpactFrameMaterial.SetInt("_on", 0);
     }
 }

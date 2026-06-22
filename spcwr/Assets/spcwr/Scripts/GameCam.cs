@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameCam : MonoBehaviour
 {
+    public Camera cam;
     public float shakeMagnitude;
     public float shakeFreq;
     public RBitUtils.ResponseTypes.Spring shakeMagnitudeEased;
@@ -10,6 +11,7 @@ public class GameCam : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        cam = GetComponent<Camera>();
         shakeMagnitudeEased = new(0, 1, 1, 0);
     }
 

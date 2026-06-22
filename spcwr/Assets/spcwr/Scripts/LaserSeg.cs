@@ -10,9 +10,18 @@ public class LaserSeg : MonoBehaviour
     public AnimationCurve startWidth;
     public AnimationCurve middleWidth;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public AnimationCurve widthAnim;
+
+    public Gradient startColor;
+    public Gradient middleColor;
+    public Gradient endColor;
+
+    public float maxLifespan;
+    public float lifespan;
+
+    public void Init()
     {
+        lifespan = maxLifespan;
         col = GetComponent<EdgeCollider2D>();
         line = GetComponent<LineRenderer>();
     }
@@ -23,10 +32,21 @@ public class LaserSeg : MonoBehaviour
         if (isStart)
         {
             line.widthCurve = startWidth;
+            line.colorGradient = startColor;
         }
         else
         {
             line.widthCurve = middleWidth;
+            line.colorGradient = endColor;
+        }
+
+        lifespan -= Time.deltaTime;
+        line.widthMultiplier = 5*widthAnim.Evaluate(1- lifespan / maxLifespan);
+
+
+        if (lifespan < 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

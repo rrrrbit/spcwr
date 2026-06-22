@@ -5,6 +5,8 @@ public class Pellet : MonoBehaviour
     public float lifespan;
     float lifeTimer;
     ParticleSystem ptcl;
+
+    Vector2 velocityLastFrame;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +21,7 @@ public class Pellet : MonoBehaviour
         lifeTimer -= Time.deltaTime;
         if (lifeTimer < 0)
         {
+            MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 50, 40, 0.3f);
             transform.DetachChildren();
             Destroy(gameObject);
         }
@@ -29,9 +32,19 @@ public class Pellet : MonoBehaviour
         ptcl.Stop();
     }
 
+    private void FixedUpdate()
+    {
+        velocityLastFrame = GetComponent<Rigidbody2D>().linearVelocity;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Vector2 deflect = Vector2.Reflect(velocityLastFrame, collision.GetContact(0).normal);
+        
+        MGR.vfx.PtclBurst(transform.position, deflect, 45, 25, 40, 1);
         transform.DetachChildren();
+
+
         Destroy(gameObject);
     }
 }

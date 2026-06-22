@@ -13,7 +13,7 @@ public class MGR_Laser : MonoBehaviour
     public Scene scene;
     public PhysicsScene2D pScene;
     public List<List<Vector2>> positions;
-    public List<LaserSeg> edges;
+    public List<LineRenderer> trajectoryLines;
     public GameObject tracer;
     public Rigidbody2D tracerRb;
 
@@ -29,47 +29,66 @@ public class MGR_Laser : MonoBehaviour
         SceneManager.MoveGameObjectToScene(tracer, scene);
 
         positions = new List<List<Vector2>>();
-        edges = new List<LaserSeg>();
-
-        for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
-        {
-            edges.Add(Instantiate(edgeColliderPrefab));
-        }
     }
 
-    void UpdateEdgeColliders()
+    public void Fire()
     {
+        MGR.vfx.Shake(4);
+        
         for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
         {
-            edges[i].col.enabled = edges[i].col.SetPoints(positions[i]);
-        }
-    }
+            var thisLaserSeg = Instantiate(edgeColliderPrefab);
+            thisLaserSeg.maxLifespan = 1f;
 
-    void UpdateLineRenderers()
-    {
-        for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
-        {
-            edges[i].line.enabled = edges[i].col.enabled;
+            thisLaserSeg.Init();
 
-            edges[i].line.positionCount = positions[i].Count;
-            edges[i].line.SetPositions(positions[i].Select(x => x.xy()).ToArray());
+            thisLaserSeg.col.enabled = thisLaserSeg.col.SetPoints(positions[i]);
+            thisLaserSeg.line.enabled = thisLaserSeg.col.enabled;
 
+            thisLaserSeg.line.positionCount = positions[i].Count;
+            thisLaserSeg.line.SetPositions(positions[i].Select(x => x.xy()).ToArray());
             bool isStart = i == 0;
             bool isEnd = i == MGR.game.settings.laserMaxWrap - 1;
 
-            edges[i].isStart = isStart;
+            thisLaserSeg.isStart = isStart;
             bool extendStart = !isStart;
             bool extendEnd = !isEnd || !endInMiddle;
 
             if (extendStart)
             {
                 Vector2 extendedStart = positions[i][0] + (positions[i][0] - positions[i][1]) * 20;
-                edges[i].line.SetPosition(0, extendedStart);
+                thisLaserSeg.line.SetPosition(0, extendedStart);
             }
             if (extendEnd)
             {
                 Vector2 extendedEnd = positions[i][^1] + (positions[i][^1] - positions[i][^2]) * 20;
-                edges[i].line.SetPosition(edges[i].line.positionCount - 1, extendedEnd);
+                thisLaserSeg.line.SetPosition(thisLaserSeg.line.positionCount - 1, extendedEnd);
+            }
+        }
+    }
+
+    void UpdateTrajectoryLines()
+    {
+        for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
+        {
+            trajectoryLines[i].positionCount = positions[i].Count;
+            trajectoryLines[i].SetPositions(positions[i].Select(x => x.xy()).ToArray());
+
+            bool isStart = i == 0;
+            bool isEnd = i == MGR.game.settings.laserMaxWrap - 1;
+
+            bool extendStart = !isStart;
+            bool extendEnd = !isEnd || !endInMiddle;
+
+            if (extendStart)
+            {
+                Vector2 extendedStart = positions[i][0] + (positions[i][0] - positions[i][1]) * 20;
+                trajectoryLines[i].SetPosition(0, extendedStart);
+            }
+            if (extendEnd)
+            {
+                Vector2 extendedEnd = positions[i][^1] + (positions[i][^1] - positions[i][^2]) * 20;
+                trajectoryLines[i].SetPosition(trajectoryLines[i].positionCount - 1, extendedEnd);
             }
         }
     }
@@ -125,10 +144,6 @@ public class MGR_Laser : MonoBehaviour
         print(positions.Count);
 
         positions.Last().Remove(positions.Last().Last());
-
-        UpdateEdgeColliders();
-        UpdateLineRenderers();
-
     }
 
     // Update is called once per frame
