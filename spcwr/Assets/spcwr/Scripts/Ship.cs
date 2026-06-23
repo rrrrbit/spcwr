@@ -61,15 +61,16 @@ public class Ship : MonoBehaviour
 
     void Shoot()
     {
-        GameObject thisPellet = Instantiate(MGR.game.pelletPrefab);
-        thisPellet.transform.position = shootOrigin.position;
+        GameObject thisPellet = Instantiate(MGR.game.pelletPrefab, shootOrigin.position, shootOrigin.rotation);
         thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * MGR.game.settings.pelletSpeed;
         thisPellet.GetComponent<Wrap>().bounds = GetComponent<Wrap>().bounds;
+        thisPellet.GetComponent<Pellet>().lifespan = MGR.game.settings.pelletLifespan;
         rb.AddForce(-transform.right * MGR.game.settings.shipRecoil, ForceMode2D.Impulse);
     }
 
-    void Die()
+    public void Die()
     {
+        MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 250, 100, 3);
         Destroy(gameObject);
     }
 
@@ -77,9 +78,14 @@ public class Ship : MonoBehaviour
     {
         if (killLayers.Contains(collision.gameObject))
         {
-            MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 250, 100, 3);
+            
             MGR.vfx.Shake(4);
-            MGR.vfx.RadialImpactFrame(transform.position);
+            
+            if (LayerMask.LayerToName(collision.gameObject.layer) == "star")
+            {
+                MGR.vfx.RadialImpactFrame(transform.position);
+            }
+
             Die();
         }
     }

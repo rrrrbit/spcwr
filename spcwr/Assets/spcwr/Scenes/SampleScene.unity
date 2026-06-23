@@ -1033,7 +1033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2007642805171788629, guid: c52efd440a0f1c14e81081db68389afe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4798192285386215110, guid: c52efd440a0f1c14e81081db68389afe, type: 3}
       propertyPath: bounds
@@ -1041,7 +1041,7 @@ PrefabInstance:
       objectReference: {fileID: 1368035193}
     - target: {fileID: 8307867092022799509, guid: c52efd440a0f1c14e81081db68389afe, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8307867092022799509, guid: c52efd440a0f1c14e81081db68389afe, type: 3}
       propertyPath: m_Color.g
@@ -1983,14 +1983,15 @@ MonoBehaviour:
   shipA: {fileID: 1779489162}
   shipB: {fileID: 115783924}
   settings:
-    starGravity: 2000
-    starPelletKnockback: 0.5
+    starGravity: 0
+    starPelletKnockback: 0.3
     shipTurnVel: -270
-    shipThrust: 25
+    shipThrust: 35
     shipReloadTime: 0.3
     shipRecoil: 3
     pelletSpeed: 50
-    laserWidth: 5
+    pelletLifespan: 1
+    laserWidth: 10
     laserStartVel: 40
     laserMaxLength: 200
     laserMaxWrap: 2

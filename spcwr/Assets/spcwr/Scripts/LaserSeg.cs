@@ -55,7 +55,7 @@ public class LaserSeg : MonoBehaviour
         }
 
         lifespan -= Time.deltaTime;
-        line.widthMultiplier = 5*widthAnim.Evaluate(1- lifespan / maxLifespan);
+        line.widthMultiplier = MGR.game.settings.laserWidth * widthAnim.Evaluate(1- lifespan / maxLifespan);
 
 
         if (lifespan < 0)

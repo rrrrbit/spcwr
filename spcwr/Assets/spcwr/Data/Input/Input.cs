@@ -117,6 +117,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""turnDir"",
+                    ""type"": ""Value"",
+                    ""id"": ""47c1dfc0-893e-42bd-98dc-54f530e8036e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,39 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""d48b0f39-f5fd-43ba-86d6-8dafe47de219"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""turn"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""441d20f4-9a04-4d1f-b287-5fe5020e710c"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""526d9fb6-066d-48dc-bc36-62ee24a60ff3"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""0589cf52-bd90-49d4-a449-6fd7b8ed68a5"",
                     ""path"": ""<Keyboard>/s"",
@@ -166,12 +208,67 @@ public partial class @Input: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""115bd9e4-7350-4f6a-8f5e-79530362cdd8"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7d81bce-3133-4bec-ba5e-270fb0b496c4"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""6ba986ff-39d1-4299-a46f-aa4966d36a4e"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""730869e7-9271-45a9-8827-9cb0923bd27c"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6544c9a5-773e-41ea-98b8-f6932a0ba881"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e00c104-57c7-48b2-9345-c94a8e761732"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""turnDir"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -207,6 +304,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""turnDir"",
+                    ""type"": ""Value"",
+                    ""id"": ""5fc73823-fde2-425d-8597-7577a74e7304"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -242,6 +348,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""action"": ""turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9015e5ba-5add-434f-8981-68ac61a61b87"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""turnDir"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -336,11 +453,13 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_PlayerA_turn = m_PlayerA.FindAction("turn", throwIfNotFound: true);
         m_PlayerA_thrust = m_PlayerA.FindAction("thrust", throwIfNotFound: true);
         m_PlayerA_shoot = m_PlayerA.FindAction("shoot", throwIfNotFound: true);
+        m_PlayerA_turnDir = m_PlayerA.FindAction("turnDir", throwIfNotFound: true);
         // PlayerB
         m_PlayerB = asset.FindActionMap("PlayerB", throwIfNotFound: true);
         m_PlayerB_turn = m_PlayerB.FindAction("turn", throwIfNotFound: true);
         m_PlayerB_thrust = m_PlayerB.FindAction("thrust", throwIfNotFound: true);
         m_PlayerB_shoot = m_PlayerB.FindAction("shoot", throwIfNotFound: true);
+        m_PlayerB_turnDir = m_PlayerB.FindAction("turnDir", throwIfNotFound: true);
     }
 
     ~@Input()
@@ -425,6 +544,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerA_turn;
     private readonly InputAction m_PlayerA_thrust;
     private readonly InputAction m_PlayerA_shoot;
+    private readonly InputAction m_PlayerA_turnDir;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerA".
     /// </summary>
@@ -448,6 +568,10 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerA/shoot".
         /// </summary>
         public InputAction @shoot => m_Wrapper.m_PlayerA_shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerA/turnDir".
+        /// </summary>
+        public InputAction @turnDir => m_Wrapper.m_PlayerA_turnDir;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -483,6 +607,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @shoot.started += instance.OnShoot;
             @shoot.performed += instance.OnShoot;
             @shoot.canceled += instance.OnShoot;
+            @turnDir.started += instance.OnTurnDir;
+            @turnDir.performed += instance.OnTurnDir;
+            @turnDir.canceled += instance.OnTurnDir;
         }
 
         /// <summary>
@@ -503,6 +630,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @shoot.started -= instance.OnShoot;
             @shoot.performed -= instance.OnShoot;
             @shoot.canceled -= instance.OnShoot;
+            @turnDir.started -= instance.OnTurnDir;
+            @turnDir.performed -= instance.OnTurnDir;
+            @turnDir.canceled -= instance.OnTurnDir;
         }
 
         /// <summary>
@@ -543,6 +673,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerB_turn;
     private readonly InputAction m_PlayerB_thrust;
     private readonly InputAction m_PlayerB_shoot;
+    private readonly InputAction m_PlayerB_turnDir;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerB".
     /// </summary>
@@ -566,6 +697,10 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerB/shoot".
         /// </summary>
         public InputAction @shoot => m_Wrapper.m_PlayerB_shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerB/turnDir".
+        /// </summary>
+        public InputAction @turnDir => m_Wrapper.m_PlayerB_turnDir;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -601,6 +736,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @shoot.started += instance.OnShoot;
             @shoot.performed += instance.OnShoot;
             @shoot.canceled += instance.OnShoot;
+            @turnDir.started += instance.OnTurnDir;
+            @turnDir.performed += instance.OnTurnDir;
+            @turnDir.canceled += instance.OnTurnDir;
         }
 
         /// <summary>
@@ -621,6 +759,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @shoot.started -= instance.OnShoot;
             @shoot.performed -= instance.OnShoot;
             @shoot.canceled -= instance.OnShoot;
+            @turnDir.started -= instance.OnTurnDir;
+            @turnDir.performed -= instance.OnTurnDir;
+            @turnDir.canceled -= instance.OnTurnDir;
         }
 
         /// <summary>
@@ -747,6 +888,13 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "turnDir" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTurnDir(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerB" which allows adding and removing callbacks.
@@ -776,5 +924,12 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "turnDir" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTurnDir(InputAction.CallbackContext context);
     }
 }

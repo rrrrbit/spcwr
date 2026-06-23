@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 524c1f9202f042e4188ebb42cbac4e3b
+guid: 15fbb029ab7b45244a89d39c9069c850
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7198332805580038228
-    second: starCircle_0
+      213: -4405721588880470262
+    second: pellet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 512
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: starCircle_0
+      name: pellet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: caf5c54a3726a1c90800000000000000
-      internalID: -7198332805580038228
+      spriteID: a0f8283be8bbbd2c0800000000000000
+      internalID: -4405721588880470262
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      starCircle_0: -7198332805580038228
+      pellet_0: -4405721588880470262
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

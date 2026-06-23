@@ -45,6 +45,7 @@ public struct GameSettings
     public float shipReloadTime;
     public float shipRecoil;
     public float pelletSpeed;
+    public float pelletLifespan;
     [Header("Laser")]
     public float laserWidth;
     public float laserStartVel;

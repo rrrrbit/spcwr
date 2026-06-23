@@ -52,6 +52,8 @@ public class MGR_Laser : MonoBehaviour
             thisLaserSeg.col.enabled = thisLaserSeg.col.SetPoints(positions[i]);
             thisLaserSeg.line.enabled = thisLaserSeg.col.enabled;
 
+            thisLaserSeg.col.edgeRadius = MGR.game.settings.laserWidth / 2;
+
             thisLaserSeg.line.positionCount = positions[i].Count;
             thisLaserSeg.line.SetPositions(positions[i].Select(x => x.xy()).ToArray());
             bool isStart = i == 0;
@@ -70,6 +72,17 @@ public class MGR_Laser : MonoBehaviour
             {
                 Vector2 extendedEnd = positions[i][^1] + (positions[i][^1] - positions[i][^2]) * 20;
                 thisLaserSeg.line.SetPosition(thisLaserSeg.line.positionCount - 1, extendedEnd);
+            }
+
+            var overlapList = new List<Collider2D>();
+            thisLaserSeg.col.Overlap(overlapList);
+
+            foreach (Collider2D col in overlapList)
+            {
+                if (col.TryGetComponent(out Ship ship) && ship != owner)
+                {
+                    ship.Die();
+                }
             }
 
             thisLaserSeg.PlayPtcl();
@@ -132,16 +145,23 @@ public class MGR_Laser : MonoBehaviour
 
 
             if (tracerRb.linearVelocity.sqrMagnitude > MGR.game.settings.laserStartVel * MGR.game.settings.laserStartVel * 3) ignoreForces = true;
-            
-            if (accmLength * accmLength > (owner.transform.position - owner.shootOrigin.position).sqrMagnitude)
+
+            bool afterShootOffset = accmLength * accmLength > (owner.transform.position - owner.shootOrigin.position).sqrMagnitude;
+
+            if (afterShootOffset) // ignore everything before the shoot offset
             {
                 thisSegment.Add(tracer.transform.position);
+                
             }
+
             if (tracer.GetComponent<Wrap>().WrapPos())
             {
-                positions.Add(thisSegment.ToList());
-                thisSegment.Clear();
-                currentWraps++;
+                if (afterShootOffset)
+                {
+                    positions.Add(thisSegment.ToList());
+                    thisSegment.Clear();
+                    currentWraps++;
+                }
             }
             else
             {
