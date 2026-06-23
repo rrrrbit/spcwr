@@ -13,11 +13,12 @@ public class MGR_Laser : MonoBehaviour
     public Scene scene;
     public PhysicsScene2D pScene;
     public List<List<Vector2>> positions;
-    public List<LineRenderer> trajectoryLines;
+    public List<TrajectoryLine> trajectoryLines;
     public GameObject tracer;
     public Rigidbody2D tracerRb;
 
     public LaserSeg edgeColliderPrefab;
+    public TrajectoryLine trajectoryLinePrefab;
 
     bool endInMiddle;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,12 +30,17 @@ public class MGR_Laser : MonoBehaviour
         SceneManager.MoveGameObjectToScene(tracer, scene);
 
         positions = new List<List<Vector2>>();
+        trajectoryLines = new List<TrajectoryLine>();
+        for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
+        {
+            trajectoryLines.Add(Instantiate(trajectoryLinePrefab));
+        }
     }
 
     public void Fire()
     {
         MGR.vfx.Shake(4);
-        MGR.vfx.ImpactFrame(transform.position);
+        MGR.vfx.DirectionalImpactFrame(owner.transform.position, -owner.transform.right);
 
         for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
         {
@@ -75,8 +81,8 @@ public class MGR_Laser : MonoBehaviour
     {
         for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
         {
-            trajectoryLines[i].positionCount = positions[i].Count;
-            trajectoryLines[i].SetPositions(positions[i].Select(x => x.xy()).ToArray());
+            trajectoryLines[i].line.positionCount = positions[i].Count;
+            trajectoryLines[i].line.SetPositions(positions[i].Select(x => x.xy()).ToArray());
 
             bool isStart = i == 0;
             bool isEnd = i == MGR.game.settings.laserMaxWrap - 1;
@@ -87,19 +93,19 @@ public class MGR_Laser : MonoBehaviour
             if (extendStart)
             {
                 Vector2 extendedStart = positions[i][0] + (positions[i][0] - positions[i][1]) * 20;
-                trajectoryLines[i].SetPosition(0, extendedStart);
+                trajectoryLines[i].line.SetPosition(0, extendedStart);
             }
             if (extendEnd)
             {
                 Vector2 extendedEnd = positions[i][^1] + (positions[i][^1] - positions[i][^2]) * 20;
-                trajectoryLines[i].SetPosition(trajectoryLines[i].positionCount - 1, extendedEnd);
+                trajectoryLines[i].line.SetPosition(trajectoryLines[i].line.positionCount - 1, extendedEnd);
             }
         }
     }
 
     void UpdateTrajectory()
     {
-        tracer.transform.SetPositionAndRotation(owner.shootOrigin.position, owner.shootOrigin.rotation);
+        tracer.transform.SetPositionAndRotation(owner.transform.position, owner.shootOrigin.rotation);
         tracerRb.linearVelocity = owner.shootOrigin.right * MGR.game.settings.laserStartVel;
 
         int currentWraps = 0;
@@ -127,7 +133,10 @@ public class MGR_Laser : MonoBehaviour
 
             if (tracerRb.linearVelocity.sqrMagnitude > MGR.game.settings.laserStartVel * MGR.game.settings.laserStartVel * 3) ignoreForces = true;
             
-            thisSegment.Add(tracer.transform.position);
+            if (accmLength * accmLength > (owner.transform.position - owner.shootOrigin.position).sqrMagnitude)
+            {
+                thisSegment.Add(tracer.transform.position);
+            }
             if (tracer.GetComponent<Wrap>().WrapPos())
             {
                 positions.Add(thisSegment.ToList());
@@ -148,6 +157,8 @@ public class MGR_Laser : MonoBehaviour
         print(positions.Count);
 
         positions.Last().Remove(positions.Last().Last());
+
+        UpdateTrajectoryLines();
     }
 
     // Update is called once per frame

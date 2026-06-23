@@ -41,7 +41,7 @@ public class Pellet : MonoBehaviour
     {
         Vector2 deflect = Vector2.Reflect(velocityLastFrame, collision.GetContact(0).normal);
         
-        MGR.vfx.PtclBurst(transform.position, deflect, 45, 25, 40, 1);
+        MGR.vfx.PtclBurst(transform.position, deflect, 45, 40, 40, 1);
         transform.DetachChildren();
 
 

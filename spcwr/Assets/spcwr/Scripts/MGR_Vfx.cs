@@ -11,6 +11,8 @@ public class MGR_Vfx : MonoBehaviour
 
     public Material radialImpactFrameMaterial;
 
+    public Material directionalImpactFrameMaterial;
+
     public float impactFrameLength;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,13 +53,12 @@ public class MGR_Vfx : MonoBehaviour
         thisBurst.Play();
     }
 
-    public void ImpactFrame(Vector3 center)
+    public void RadialImpactFrame(Vector3 center)
     {
         
-        StartCoroutine(ImpactFrameCoroutine(impactFrameLength, cam.cam.WorldToViewportPoint(center)-Vector3.one/2));
+        StartCoroutine(RadIFCoroutine(impactFrameLength, cam.cam.WorldToViewportPoint(center)-Vector3.one/2));
     }
-
-    public IEnumerator ImpactFrameCoroutine(float length, Vector2 center )
+    public IEnumerator RadIFCoroutine(float length, Vector2 center)
     {
         radialImpactFrameMaterial.SetVector("_offset", center);
         radialImpactFrameMaterial.SetInt("_on", 1);
@@ -78,4 +79,34 @@ public class MGR_Vfx : MonoBehaviour
 
         radialImpactFrameMaterial.SetInt("_on", 0);
     }
+
+    public void DirectionalImpactFrame(Vector3 center, Vector3 direction)
+    {
+
+        StartCoroutine(DirectionalIFCoroutine(impactFrameLength, cam.cam.WorldToViewportPoint(center) - Vector3.one / 2, direction));
+    }
+
+    public IEnumerator DirectionalIFCoroutine(float length, Vector2 center, Vector3 dir)
+    {
+        directionalImpactFrameMaterial.SetVector("_offset", center);
+        directionalImpactFrameMaterial.SetVector("_direction", dir);
+        directionalImpactFrameMaterial.SetInt("_on", 1);
+
+        directionalImpactFrameMaterial.SetInt("_threshold", 1);
+        directionalImpactFrameMaterial.SetInt("_invert", 1);
+
+        yield return new WaitForSeconds(length);
+
+        directionalImpactFrameMaterial.SetInt("_invert", 0);
+
+        yield return new WaitForSeconds(length);
+
+        directionalImpactFrameMaterial.SetInt("_threshold", 0);
+        directionalImpactFrameMaterial.SetInt("_invert", 1);
+
+        yield return new WaitForSeconds(length);
+
+        directionalImpactFrameMaterial.SetInt("_on", 0);
+    }
+
 }

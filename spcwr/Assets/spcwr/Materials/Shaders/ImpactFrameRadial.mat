@@ -56,16 +56,16 @@ Material:
     - _EnableExternalAlpha: 0
     - _ZWrite: 0
     - _invert: 1
-    - _middleRadius: 0
+    - _middleRadius: 0.15
     - _on: 0
-    - _sparseness: 0.1
-    - _strength: 0.2
+    - _sparseness: 0.26
+    - _strength: 0.52
     - _thresh: 0.01
     - _threshold: 0
-    - _width: 1000
+    - _width: 750
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _offset: {r: 0.0000029206276, g: 0.0000051259995, b: 0, a: 0}
+    - _offset: {r: 0.014234126, g: -0.015252173, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -1992,7 +1992,7 @@ MonoBehaviour:
     pelletSpeed: 50
     laserWidth: 5
     laserStartVel: 40
-    laserMaxLength: 90
+    laserMaxLength: 200
     laserMaxWrap: 2
     laserChargeTime: 0
     laserRecoil: 20
@@ -2031,6 +2031,7 @@ MonoBehaviour:
   tracer: {fileID: 108457991}
   tracerRb: {fileID: 0}
   edgeColliderPrefab: {fileID: 8402628303302783262, guid: 90c15263837203e429937407bc3041f8, type: 3}
+  trajectoryLinePrefab: {fileID: 2387642661648145950, guid: 1c41f604ec3a68546b0b1549a46c5608, type: 3}
 --- !u!114 &1575408625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,7 +2048,8 @@ MonoBehaviour:
   starShakeMultiplier: 0.02
   ptclBurstPrefab: {fileID: 8066618665039888156, guid: 9b734688bf4ec4345bd96b54b2c38fcb, type: 3}
   radialImpactFrameMaterial: {fileID: 2100000, guid: 772da5b80fa46f64289309606e03ce15, type: 2}
-  impactFrameLength: 0.04
+  directionalImpactFrameMaterial: {fileID: 2100000, guid: 40f7b5bf3492797479d4facf1005bc58, type: 2}
+  impactFrameLength: 0.05
 --- !u!1 &1732760821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,34 +2647,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5227771211402378284, guid: fbfb66e0df573924bba13e867e596247, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6892801256354142146, guid: fbfb66e0df573924bba13e867e596247, type: 3}
       propertyPath: bounds
       value: 
       objectReference: {fileID: 1368035193}
-    - target: {fileID: 6892801256354142146, guid: fbfb66e0df573924bba13e867e596247, type: 3}
-      propertyPath: clonePrefab
-      value: 
-      objectReference: {fileID: 2457702093903118618, guid: bb417e3f74526374089cde9acdf95ae2, type: 3}
     - target: {fileID: 7203090524803618142, guid: fbfb66e0df573924bba13e867e596247, type: 3}
       propertyPath: bg
       value: 
       objectReference: {fileID: 1732760825}
-    - target: {fileID: 7203090524803618142, guid: fbfb66e0df573924bba13e867e596247, type: 3}
-      propertyPath: warp
-      value: 
-      objectReference: {fileID: 2100000, guid: 16f482bd26f474442b27ab2b2b31c621, type: 2}
-    - target: {fileID: 7203090524803618142, guid: fbfb66e0df573924bba13e867e596247, type: 3}
-      propertyPath: gravity
-      value: 2000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7203090524803618142, guid: fbfb66e0df573924bba13e867e596247, type: 3}
-      propertyPath: knockStrength
-      value: 7.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

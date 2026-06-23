@@ -79,7 +79,7 @@ public class Ship : MonoBehaviour
         {
             MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 250, 100, 3);
             MGR.vfx.Shake(4);
-            MGR.vfx.ImpactFrame(transform.position);
+            MGR.vfx.RadialImpactFrame(transform.position);
             Die();
         }
     }
