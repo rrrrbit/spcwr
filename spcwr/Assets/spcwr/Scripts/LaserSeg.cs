@@ -19,11 +19,25 @@ public class LaserSeg : MonoBehaviour
     public float maxLifespan;
     public float lifespan;
 
+    ParticleSystem ptcl;
+
     public void Init()
     {
         lifespan = maxLifespan;
         col = GetComponent<EdgeCollider2D>();
         line = GetComponent<LineRenderer>();
+        ptcl = GetComponentInChildren<ParticleSystem>();
+
+        
+    }
+
+    public void PlayPtcl()
+    {
+        Mesh lineMesh = new();
+        line.BakeMesh(lineMesh);
+        var shape = ptcl.shape;
+        shape.mesh = lineMesh;
+        ptcl.Play(lineMesh);
     }
 
     // Update is called once per frame
@@ -46,7 +60,10 @@ public class LaserSeg : MonoBehaviour
 
         if (lifespan < 0)
         {
+            transform.DetachChildren();
             Destroy(gameObject);
         }
+
+        
     }
 }

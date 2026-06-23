@@ -34,7 +34,8 @@ public class MGR_Laser : MonoBehaviour
     public void Fire()
     {
         MGR.vfx.Shake(4);
-        
+        MGR.vfx.ImpactFrame(transform.position);
+
         for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
         {
             var thisLaserSeg = Instantiate(edgeColliderPrefab);
@@ -64,7 +65,10 @@ public class MGR_Laser : MonoBehaviour
                 Vector2 extendedEnd = positions[i][^1] + (positions[i][^1] - positions[i][^2]) * 20;
                 thisLaserSeg.line.SetPosition(thisLaserSeg.line.positionCount - 1, extendedEnd);
             }
+
+            thisLaserSeg.PlayPtcl();
         }
+        owner.GetComponent<Rigidbody2D>().AddForce(-owner.transform.right * MGR.game.settings.laserRecoil, ForceMode2D.Impulse);
     }
 
     void UpdateTrajectoryLines()

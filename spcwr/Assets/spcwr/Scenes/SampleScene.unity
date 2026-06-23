@@ -1990,9 +1990,12 @@ MonoBehaviour:
     shipReloadTime: 0.3
     shipRecoil: 3
     pelletSpeed: 50
+    laserWidth: 5
     laserStartVel: 40
     laserMaxLength: 90
     laserMaxWrap: 2
+    laserChargeTime: 0
+    laserRecoil: 20
   spriteShipA: {fileID: 21300000, guid: a77f8b3b88848ed41b5bc81034c0e56c, type: 3}
   spriteShipB: {fileID: 21300000, guid: 925da60a04c7a674d95c9b76bbd51f00, type: 3}
   pelletPrefab: {fileID: 1490460933987068758, guid: 9d2f49f8f9576ab42b1e9264563676c3, type: 3}
