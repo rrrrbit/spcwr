@@ -62,7 +62,7 @@ public class Ship : MonoBehaviour
     void Shoot()
     {
         GameObject thisPellet = Instantiate(MGR.game.pelletPrefab, shootOrigin.position, shootOrigin.rotation);
-        thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * MGR.game.settings.pelletSpeed;
+        thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * MGR.game.settings.pelletSpeed + rb.linearVelocity.xy() * MGR.game.settings.pelletInheritVel;
         thisPellet.GetComponent<Wrap>().bounds = GetComponent<Wrap>().bounds;
         thisPellet.GetComponent<Pellet>().lifespan = MGR.game.settings.pelletLifespan;
         rb.AddForce(-transform.right * MGR.game.settings.shipRecoil, ForceMode2D.Impulse);

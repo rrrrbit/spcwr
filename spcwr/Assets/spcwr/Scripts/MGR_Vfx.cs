@@ -86,6 +86,12 @@ public class MGR_Vfx : MonoBehaviour
         StartCoroutine(DirectionalIFCoroutine(impactFrameLength, cam.cam.WorldToViewportPoint(center) - Vector3.one / 2, direction));
     }
 
+    public void DEBUGLineImpactFrame(Vector3 center, Vector3 direction)
+    {
+        directionalImpactFrameMaterial.SetVector("_offset", cam.cam.WorldToViewportPoint(center) - Vector3.one / 2);
+        directionalImpactFrameMaterial.SetVector("_direction", direction);
+    }
+
     public IEnumerator DirectionalIFCoroutine(float length, Vector2 center, Vector3 dir)
     {
         directionalImpactFrameMaterial.SetVector("_offset", center);

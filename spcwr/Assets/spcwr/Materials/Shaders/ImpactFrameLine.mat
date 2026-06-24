@@ -55,6 +55,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _ZWrite: 0
+    - _debugvis: 0
     - _invert: 1
     - _middleRadius: 0
     - _middleWidth: 0.03
@@ -67,7 +68,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _direction: {r: -0.8763067, g: -0.48175365, b: -0, a: 0}
-    - _offset: {r: 0.0037870407, g: 0.16558701, b: 0, a: 0}
+    - _direction: {r: -0.3090173, g: -0.9510565, b: -0, a: 0}
+    - _offset: {r: -0.19224536, g: -0.33333334, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

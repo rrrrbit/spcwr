@@ -1,3 +1,4 @@
+using RBitUtils;
 using UnityEngine;
 
 public class Pellet : MonoBehaviour
@@ -41,6 +42,17 @@ public class Pellet : MonoBehaviour
     {
         Vector2 deflect = Vector2.Reflect(velocityLastFrame, collision.GetContact(0).normal);
         
+        MGR.vfx.PtclBurst(transform.position, deflect, 45, 40, 40, 1);
+        transform.DetachChildren();
+
+
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Vector2 deflect = Vector2.Reflect(velocityLastFrame, (transform.position.xy() - collision.ClosestPoint(transform.position)));
+
         MGR.vfx.PtclBurst(transform.position, deflect, 45, 40, 40, 1);
         transform.DetachChildren();
 

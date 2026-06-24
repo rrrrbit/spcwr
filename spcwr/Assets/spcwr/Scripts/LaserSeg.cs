@@ -27,8 +27,9 @@ public class LaserSeg : MonoBehaviour
         col = GetComponent<EdgeCollider2D>();
         line = GetComponent<LineRenderer>();
         ptcl = GetComponentInChildren<ParticleSystem>();
+        line.widthMultiplier = MGR.game.settings.laserWidth;
 
-        
+
     }
 
     public void PlayPtcl()

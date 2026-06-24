@@ -9,6 +9,10 @@ public class MGR_Laser : MonoBehaviour
 {
     public bool active;
 
+    [SerializeField] float laserTimer;
+    [SerializeField] float trajLineAlphaMult;
+    [SerializeField] AnimationCurve trajLineFlashLengthOverTime;
+
     public Ship owner;
     public Scene scene;
     public PhysicsScene2D pScene;
@@ -21,6 +25,9 @@ public class MGR_Laser : MonoBehaviour
     public TrajectoryLine trajectoryLinePrefab;
 
     bool endInMiddle;
+    public float wrapCountMinimumDistance;
+
+    [SerializeField] float trajLineFlashAnim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,7 +38,7 @@ public class MGR_Laser : MonoBehaviour
 
         positions = new List<List<Vector2>>();
         trajectoryLines = new List<TrajectoryLine>();
-        for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
+        for (int i = 0; i < MGR.game.settings.laserMaxWrap + 2; i++)
         {
             trajectoryLines.Add(Instantiate(trajectoryLinePrefab));
         }
@@ -39,10 +46,13 @@ public class MGR_Laser : MonoBehaviour
 
     public void Fire()
     {
+        laserTimer = -1;
+        trajLineFlashAnim = 0;
+        
         MGR.vfx.Shake(4);
         MGR.vfx.DirectionalImpactFrame(owner.transform.position, -owner.transform.right);
 
-        for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
+        for (int i = 0; i < positions.Count; i++)
         {
             var thisLaserSeg = Instantiate(edgeColliderPrefab);
             thisLaserSeg.maxLifespan = 1f;
@@ -63,12 +73,12 @@ public class MGR_Laser : MonoBehaviour
             bool extendStart = !isStart;
             bool extendEnd = !isEnd || !endInMiddle;
 
-            if (extendStart)
+            if (extendStart && positions[i].Count > 1)
             {
                 Vector2 extendedStart = positions[i][0] + (positions[i][0] - positions[i][1]) * 20;
                 thisLaserSeg.line.SetPosition(0, extendedStart);
             }
-            if (extendEnd)
+            if (extendEnd && positions[i].Count > 1)
             {
                 Vector2 extendedEnd = positions[i][^1] + (positions[i][^1] - positions[i][^2]) * 20;
                 thisLaserSeg.line.SetPosition(thisLaserSeg.line.positionCount - 1, extendedEnd);
@@ -79,7 +89,7 @@ public class MGR_Laser : MonoBehaviour
 
             foreach (Collider2D col in overlapList)
             {
-                if (col.TryGetComponent(out Ship ship) && ship != owner)
+                if (col.TryGetComponent(out Ship ship))
                 {
                     ship.Die();
                 }
@@ -92,8 +102,14 @@ public class MGR_Laser : MonoBehaviour
 
     void UpdateTrajectoryLines()
     {
-        for (int i = 0; i < MGR.game.settings.laserMaxWrap; i++)
+        for (int i = 0; i < trajectoryLines.Count; i++)
         {
+            if (i >= positions.Count)
+            {
+                trajectoryLines[i].gameObject.SetActive(false);
+                continue;
+            }
+            trajectoryLines[i].gameObject.SetActive(true); // terrible; change
             trajectoryLines[i].line.positionCount = positions[i].Count;
             trajectoryLines[i].line.SetPositions(positions[i].Select(x => x.xy()).ToArray());
 
@@ -103,17 +119,22 @@ public class MGR_Laser : MonoBehaviour
             bool extendStart = !isStart;
             bool extendEnd = !isEnd || !endInMiddle;
 
-            if (extendStart)
+            if (extendStart && positions[i].Count > 1)
             {
                 Vector2 extendedStart = positions[i][0] + (positions[i][0] - positions[i][1]) * 20;
                 trajectoryLines[i].line.SetPosition(0, extendedStart);
             }
-            if (extendEnd)
+            if (extendEnd && positions[i].Count > 1)
             {
                 Vector2 extendedEnd = positions[i][^1] + (positions[i][^1] - positions[i][^2]) * 20;
                 trajectoryLines[i].line.SetPosition(trajectoryLines[i].line.positionCount - 1, extendedEnd);
             }
         }
+    }
+
+    public void StartLaser()
+    {
+        laserTimer = MGR.game.settings.laserChargeTime;
     }
 
     void UpdateTrajectory()
@@ -123,6 +144,7 @@ public class MGR_Laser : MonoBehaviour
 
         int currentWraps = 0;
         float accmLength = 0;
+        float thisSegmentAccmLength = 0;
         bool ignoreForces = false;
 
         positions.Clear();
@@ -156,16 +178,15 @@ public class MGR_Laser : MonoBehaviour
 
             if (tracer.GetComponent<Wrap>().WrapPos())
             {
-                if (afterShootOffset)
-                {
-                    positions.Add(thisSegment.ToList());
-                    thisSegment.Clear();
-                    currentWraps++;
-                }
+                positions.Add(thisSegment.ToList());
+                if (afterShootOffset && thisSegmentAccmLength > wrapCountMinimumDistance) currentWraps++;
+                thisSegment.Clear();
+                thisSegmentAccmLength = 0;
             }
             else
             {
                 accmLength += (tracer.transform.position - oldPos).magnitude;
+                thisSegmentAccmLength += (tracer.transform.position - oldPos).magnitude;
             }
         }
         endInMiddle = currentWraps < MGR.game.settings.laserMaxWrap;
@@ -173,8 +194,6 @@ public class MGR_Laser : MonoBehaviour
         {
             positions.Add(thisSegment.ToList());
         }
-
-        print(positions.Count);
 
         positions.Last().Remove(positions.Last().Last());
 
@@ -184,7 +203,27 @@ public class MGR_Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!active) return;
+        foreach (var line in trajectoryLines)
+        {
+            line.line.enabled = laserTimer > 0;
+        }
+
+        if (laserTimer == -1) return;
+
+        laserTimer -= Time.deltaTime;
+        trajLineFlashAnim += Time.deltaTime / trajLineFlashLengthOverTime.Evaluate(1 - laserTimer / MGR.game.settings.laserChargeTime);
+
+        foreach (var line in trajectoryLines)
+        {
+            line.line.startColor = new(1, 1, 1, (trajLineFlashAnim % 1 <= .5f) ? trajLineAlphaMult : 0);
+            line.line.endColor = new(1, 1, 1, (trajLineFlashAnim % 1 <= .5f) ? trajLineAlphaMult : 0);
+
+        }
+
         UpdateTrajectory();
+
+
+        if (laserTimer <= 0) Fire();
+
     }
 }

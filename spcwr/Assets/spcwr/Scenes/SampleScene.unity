@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 418316325}
   - component: {fileID: 418316324}
   m_Layer: 5
-  m_Name: impactFrame
+  m_Name: laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,7 +650,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1575408624}
         m_TargetAssemblyTypeName: MGR_Laser, Assembly-CSharp
-        m_MethodName: Fire
+        m_MethodName: StartLaser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -851,90 +851,6 @@ MonoBehaviour:
   cam: {fileID: 0}
   shakeMagnitude: 3
   shakeFreq: 20
---- !u!1 &619394800
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 619394802}
-  - component: {fileID: 619394801}
-  m_Layer: 0
-  m_Name: Global Light 2D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &619394801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619394800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 2
-  m_LightType: 4
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000001d1a3207
-  m_LightCookieSprite: {fileID: 0}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowsEnabled: 0
-  m_ShadowIntensity: 0.75
-  m_ShadowSoftness: 0
-  m_ShadowSoftnessFalloffIntensity: 0.5
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
---- !u!4 &619394802
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619394800}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &780977817 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7203090524803618142, guid: fbfb66e0df573924bba13e867e596247, type: 3}
@@ -1839,7 +1755,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: debugimpctfrm
+  m_text: 'debugLaser
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1985,17 +1903,18 @@ MonoBehaviour:
   settings:
     starGravity: 0
     starPelletKnockback: 0.3
-    shipTurnVel: -270
+    shipTurnVel: -225
     shipThrust: 35
     shipReloadTime: 0.3
     shipRecoil: 3
     pelletSpeed: 50
     pelletLifespan: 1
+    pelletInheritVel: 1
     laserWidth: 10
     laserStartVel: 40
     laserMaxLength: 200
     laserMaxWrap: 2
-    laserChargeTime: 0
+    laserChargeTime: 5
     laserRecoil: 20
   spriteShipA: {fileID: 21300000, guid: a77f8b3b88848ed41b5bc81034c0e56c, type: 3}
   spriteShipB: {fileID: 21300000, guid: 925da60a04c7a674d95c9b76bbd51f00, type: 3}
@@ -2024,7 +1943,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eea55a0a9bda6746bcc4cd4f12a68f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
+  laserTimer: -1
+  trajLineAlphaMult: 0.1875
+  trajLineFlashLengthOverTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: -0.43140015
+      outSlope: -0.43140015
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 0.05
+      inSlope: -0.044612106
+      outSlope: -0.044612106
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.15460104
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   owner: {fileID: 1779489162}
   scene:
     m_Handle: 0
@@ -2033,6 +1978,8 @@ MonoBehaviour:
   tracerRb: {fileID: 0}
   edgeColliderPrefab: {fileID: 8402628303302783262, guid: 90c15263837203e429937407bc3041f8, type: 3}
   trajectoryLinePrefab: {fileID: 2387642661648145950, guid: 1c41f604ec3a68546b0b1549a46c5608, type: 3}
+  wrapCountMinimumDistance: 5
+  trajLineFlashAnim: 0
 --- !u!114 &1575408625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2667,7 +2614,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1575408621}
   - {fileID: 519420032}
-  - {fileID: 619394802}
   - {fileID: 2094350060}
   - {fileID: 1051363132}
   - {fileID: 8590036001426143580}

@@ -66,6 +66,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _offset: {r: -0.021233946, g: 0.03829521, b: 0, a: 0}
+    - _offset: {r: -0.036513805, g: 0.022817373, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
