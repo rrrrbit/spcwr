@@ -5,7 +5,7 @@ public class Star : MonoBehaviour
 {
     public Collider2D col;
     public Rigidbody2D rb;
-    public LayerMask knockLayers;
+    [SerializeField] LayerMask knockLayers;
 
     public Renderer bg;
 
@@ -29,31 +29,9 @@ public class Star : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.gameObject.name);
         if (knockLayers.Contains(collision.gameObject))
         {
             Vector3 d = (transform.position - collision.transform.position).normalized;
-
-
-            Debug.DrawRay(
-                transform.position,
-                collision.relativeVelocity,
-                Color.red, 3
-                );
-
-
-            Debug.DrawRay(
-                transform.position,
-                Vector3.Project(collision.relativeVelocity, d),
-                Color.green, 3
-                );
-            Debug.DrawRay(
-                transform.position,
-                d * 20,
-                Color.cyan, 3
-                );
-
-
             Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR.game.settings.starPelletKnockback;
             MGR.vfx.Shake(force.magnitude * MGR.vfx.starShakeMultiplier);
             rb.AddForce(force, ForceMode2D.Impulse);

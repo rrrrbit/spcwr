@@ -9,11 +9,15 @@ public class MGR_Game : MonoBehaviour
     public Ship shipA;
     public Ship shipB;
     public GameSettings settings;
+    public RectTransform bounds;
 
     public Sprite spriteShipA;
     public Sprite spriteShipB;
 
     public GameObject pelletPrefab;
+    public GameObject laserPickupPrefab;
+
+    public float laserPickupEjectForce;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +33,13 @@ public class MGR_Game : MonoBehaviour
     public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SpawnLaserPickup()
+    {
+        var thisPickup = Instantiate(laserPickupPrefab, star.transform.position, Quaternion.identity);
+        thisPickup.GetComponent<Wrap>().bounds = bounds;
+        thisPickup.GetComponent<Rigidbody2D>().AddForce(UnityEngine.Random.insideUnitCircle.normalized * laserPickupEjectForce, ForceMode2D.Impulse);
     }
 }
 
@@ -48,6 +59,7 @@ public struct GameSettings
     public float pelletLifespan;
     public float pelletInheritVel;
     [Header("Laser")]
+    public float laserPickupPelletKnockback;
     public float laserWidth;
     public float laserStartVel;
     public float laserMaxLength;

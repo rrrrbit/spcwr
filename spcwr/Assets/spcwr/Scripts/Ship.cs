@@ -45,13 +45,11 @@ public class Ship : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Star star = MGR.game.star;
-
         rb.angularVelocity = MGR.game.settings.shipTurnVel * shipInput.turn;
         rb.AddForce(shipInput.thrust * MGR.game.settings.shipThrust * transform.right);
 
         Vector2 totalGrav = Vector2.zero;
-        foreach (GameObject obj in star.GetComponent<Wrap>().clones)
+        foreach (GameObject obj in MGR.game.star.GetComponent<Wrap>().clones)
         {
             Vector2 d = obj.transform.position - transform.position;
             totalGrav += d.WithMag(1 / d.sqrMagnitude);
@@ -63,7 +61,7 @@ public class Ship : MonoBehaviour
     {
         GameObject thisPellet = Instantiate(MGR.game.pelletPrefab, shootOrigin.position, shootOrigin.rotation);
         thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * MGR.game.settings.pelletSpeed + rb.linearVelocity.xy() * MGR.game.settings.pelletInheritVel;
-        thisPellet.GetComponent<Wrap>().bounds = GetComponent<Wrap>().bounds;
+        thisPellet.GetComponent<Wrap>().bounds = MGR.game.bounds;
         thisPellet.GetComponent<Pellet>().lifespan = MGR.game.settings.pelletLifespan;
         rb.AddForce(-transform.right * MGR.game.settings.shipRecoil, ForceMode2D.Impulse);
     }
@@ -76,6 +74,12 @@ public class Ship : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.TryGetComponent(out LaserPickup pickup))
+        {
+            MGR.game.laser.owner = this;
+            MGR.game.laser.StartLaser();
+        }
+        
         if (killLayers.Contains(collision.gameObject))
         {
             
@@ -83,7 +87,7 @@ public class Ship : MonoBehaviour
             
             if (LayerMask.LayerToName(collision.gameObject.layer) == "star")
             {
-                MGR.vfx.RadialImpactFrame(transform.position);
+                //MGR.vfx.RadialImpactFrame(transform.position);
             }
 
             Die();

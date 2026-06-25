@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 418316325}
   - component: {fileID: 418316324}
   m_Layer: 5
-  m_Name: laser
+  m_Name: laserpickip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -648,9 +648,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1575408624}
-        m_TargetAssemblyTypeName: MGR_Laser, Assembly-CSharp
-        m_MethodName: StartLaser
+      - m_Target: {fileID: 1575408622}
+        m_TargetAssemblyTypeName: MGR_Game, Assembly-CSharp
+        m_MethodName: SpawnLaserPickup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1757,7 +1757,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'debugLaser
 
-'
+    Pickup'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1901,24 +1901,28 @@ MonoBehaviour:
   shipA: {fileID: 1779489162}
   shipB: {fileID: 115783924}
   settings:
-    starGravity: 0
+    starGravity: 2000
     starPelletKnockback: 0.3
-    shipTurnVel: -225
-    shipThrust: 35
+    shipTurnVel: -180
+    shipThrust: 25
     shipReloadTime: 0.3
     shipRecoil: 3
     pelletSpeed: 50
-    pelletLifespan: 1
+    pelletLifespan: 3
     pelletInheritVel: 1
-    laserWidth: 10
+    laserPickupPelletKnockback: 0.5
+    laserWidth: 15
     laserStartVel: 40
     laserMaxLength: 200
     laserMaxWrap: 2
     laserChargeTime: 5
     laserRecoil: 20
+  bounds: {fileID: 1368035193}
   spriteShipA: {fileID: 21300000, guid: a77f8b3b88848ed41b5bc81034c0e56c, type: 3}
   spriteShipB: {fileID: 21300000, guid: 925da60a04c7a674d95c9b76bbd51f00, type: 3}
   pelletPrefab: {fileID: 1490460933987068758, guid: 9d2f49f8f9576ab42b1e9264563676c3, type: 3}
+  laserPickupPrefab: {fileID: 2204105737257983718, guid: 20788815cfafa754bafe38162c789dc2, type: 3}
+  laserPickupEjectForce: 10
 --- !u!114 &1575408623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1945,7 +1949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   laserTimer: -1
-  trajLineAlphaMult: 0.1875
+  trajLineAlphaMult: 1
   trajLineFlashLengthOverTime:
     serializedVersion: 2
     m_Curve:
@@ -1970,7 +1974,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  owner: {fileID: 1779489162}
+  owner: {fileID: 0}
   scene:
     m_Handle: 0
   trajectoryLines: []
@@ -1978,7 +1982,7 @@ MonoBehaviour:
   tracerRb: {fileID: 0}
   edgeColliderPrefab: {fileID: 8402628303302783262, guid: 90c15263837203e429937407bc3041f8, type: 3}
   trajectoryLinePrefab: {fileID: 2387642661648145950, guid: 1c41f604ec3a68546b0b1549a46c5608, type: 3}
-  wrapCountMinimumDistance: 5
+  wrapCountMinimumDistance: 10
   trajLineFlashAnim: 0
 --- !u!114 &1575408625
 MonoBehaviour:

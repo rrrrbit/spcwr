@@ -89,7 +89,7 @@ public class MGR_Laser : MonoBehaviour
 
             foreach (Collider2D col in overlapList)
             {
-                if (col.TryGetComponent(out Ship ship))
+                if (col.TryGetComponent(out Ship ship) && ship != owner)
                 {
                     ship.Die();
                 }
@@ -109,7 +109,7 @@ public class MGR_Laser : MonoBehaviour
                 trajectoryLines[i].gameObject.SetActive(false);
                 continue;
             }
-            trajectoryLines[i].gameObject.SetActive(true); // terrible; change
+            trajectoryLines[i].gameObject.SetActive(true);
             trajectoryLines[i].line.positionCount = positions[i].Count;
             trajectoryLines[i].line.SetPositions(positions[i].Select(x => x.xy()).ToArray());
 
@@ -207,6 +207,8 @@ public class MGR_Laser : MonoBehaviour
         {
             line.line.enabled = laserTimer > 0;
         }
+
+        if (owner == null) laserTimer = -1;
 
         if (laserTimer == -1) return;
 
