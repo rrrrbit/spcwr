@@ -12,6 +12,7 @@ public class Ship : MonoBehaviour
 
     public LayerMask killLayers;
     public ParticleSystem exhaustParticle;
+    public bool died;
     
     Rigidbody2D rb;
     ShipInput shipInput;
@@ -69,7 +70,9 @@ public class Ship : MonoBehaviour
     public void Die()
     {
         MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 250, 100, 3);
-        Destroy(gameObject);
+        MGR.game.shipDied = true;
+        died = true;
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

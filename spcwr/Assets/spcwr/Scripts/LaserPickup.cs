@@ -21,6 +21,8 @@ public class LaserPickup : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
+        MGR.game.tempObjs.Add(gameObject);
+
     }
 
     private void FixedUpdate()

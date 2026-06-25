@@ -9,6 +9,9 @@ public class Star : MonoBehaviour
 
     public Renderer bg;
 
+    int hitCount;
+    public int laserPickupSpawnHits;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +34,16 @@ public class Star : MonoBehaviour
     {
         if (knockLayers.Contains(collision.gameObject))
         {
+            if (LayerMask.LayerToName(collision.gameObject.layer) == "pellet")
+            {
+                hitCount++;
+                if (hitCount == laserPickupSpawnHits)
+                {
+                    hitCount = 0;
+                    MGR.game.SpawnLaserPickup();
+                }
+            }
+            
             Vector3 d = (transform.position - collision.transform.position).normalized;
             Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR.game.settings.starPelletKnockback;
             MGR.vfx.Shake(force.magnitude * MGR.vfx.starShakeMultiplier);

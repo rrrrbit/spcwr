@@ -14,6 +14,8 @@ public class Pellet : MonoBehaviour
     {
         lifeTimer = lifespan;
         ptcl = GetComponentInChildren<ParticleSystem>();
+
+        MGR.game.tempObjs.Add(gameObject);
     }
 
     // Update is called once per frame

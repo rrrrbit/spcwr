@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,23 +13,84 @@ public class MGR_Game : MonoBehaviour
     public GameSettings settings;
     public RectTransform bounds;
 
+    public Transform startTransformA;
+    public Transform startTransformB;
+    public Transform startTransformStar;
+
     public Sprite spriteShipA;
     public Sprite spriteShipB;
 
     public GameObject pelletPrefab;
     public GameObject laserPickupPrefab;
 
+    public List<GameObject> tempObjs;
+
     public float laserPickupEjectForce;
+
+    public bool shipDied;
+    bool finishGame;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         laser = GetComponent<MGR_Laser>();
+        tempObjs = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(finishGame) FinishGame();
+        if (shipDied) finishGame = true;
+    }
+
+    void FinishGame()
+    {
+        finishGame = false;
+        if (shipA.died && shipB.died)
+        {
+            print("DRAW");
+        }
+        else if (shipA.died)
+        {
+            print("SHIP B WIN");
+        }
+        else if (shipB.died)
+        {
+            print("SHIP A WIN");
+        }
+
+        shipDied = false;
+        StartCoroutine(FinishGameCoroutine());
+    }
+
+    IEnumerator FinishGameCoroutine()
+    {
+        yield return new WaitForSeconds(3);
+
+        foreach (GameObject obj in tempObjs)
+        {
+            Destroy(obj);
+        }
+
+        shipA.gameObject.SetActive(true);
+        shipB.gameObject.SetActive(true);
+
+        shipA.transform.SetPositionAndRotation(startTransformA.position, startTransformA.rotation);
+        shipB.transform.SetPositionAndRotation(startTransformB.position, startTransformB.rotation);
+        star.transform.SetPositionAndRotation(startTransformStar.position, startTransformStar.rotation);
+
+        shipA.died = false;
+        shipB.died = false;
+
+
+        shipA.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        shipB.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        star.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+
+
+        yield return null;
+
     }
 
     public void ResetScene()
