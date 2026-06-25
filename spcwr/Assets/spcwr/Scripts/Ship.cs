@@ -70,8 +70,8 @@ public class Ship : MonoBehaviour
     public void Die()
     {
         MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 250, 100, 3);
-        MGR.game.shipDied = true;
         died = true;
+        MGR.game.shipDied = true;
         gameObject.SetActive(false);
     }
 

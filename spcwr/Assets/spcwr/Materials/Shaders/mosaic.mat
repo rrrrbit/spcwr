@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ImpactFrameRadial
-  m_Shader: {fileID: -6465566751694194690, guid: d9617da67ead6b642af3baf4af1eeb3c, type: 3}
+  m_Name: mosaic
+  m_Shader: {fileID: -6465566751694194690, guid: 18143ca7c576921468ad24f69ddf58db, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -55,17 +55,9 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _ZWrite: 0
-    - _invert: 1
-    - _middleRadius: 0.15
-    - _on: 0
-    - _sparseness: 0.26
-    - _strength: 0.52
-    - _thresh: 0.01
-    - _threshold: 0
-    - _width: 756.25
+    - _height: 640
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _offset: {r: -0.02410388, g: -0.041793585, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -28,7 +28,7 @@ public class MGR_Game : MonoBehaviour
     public float laserPickupEjectForce;
 
     public bool shipDied;
-    bool finishGame;
+    public bool downtime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,13 +40,13 @@ public class MGR_Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(finishGame) FinishGame();
-        if (shipDied) finishGame = true;
+        if (downtime) return;
+        if (shipDied) FinishGame();
     }
 
     void FinishGame()
     {
-        finishGame = false;
+        downtime = true;
         if (shipA.died && shipB.died)
         {
             print("DRAW");
@@ -60,13 +60,15 @@ public class MGR_Game : MonoBehaviour
             print("SHIP A WIN");
         }
 
-        shipDied = false;
+        
         StartCoroutine(FinishGameCoroutine());
     }
 
     IEnumerator FinishGameCoroutine()
     {
         yield return new WaitForSeconds(3);
+        shipDied = false;
+        downtime = false;
 
         foreach (GameObject obj in tempObjs)
         {
@@ -83,11 +85,13 @@ public class MGR_Game : MonoBehaviour
         shipA.died = false;
         shipB.died = false;
 
+        star.GetComponent<Flicker>().In();
+        shipA.GetComponent<Flicker>().In();
+        shipB.GetComponent<Flicker>().In();
 
         shipA.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         shipB.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         star.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-
 
         yield return null;
 

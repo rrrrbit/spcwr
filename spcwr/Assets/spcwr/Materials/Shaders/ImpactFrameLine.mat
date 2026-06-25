@@ -58,17 +58,17 @@ Material:
     - _debugvis: 0
     - _invert: 1
     - _middleRadius: 0
-    - _middleWidth: 0.03
+    - _middleWidth: 0
     - _on: 0
-    - _sparseness: 1.3
-    - _strength: 2.83
+    - _sparseness: 1.96
+    - _strength: 0.29
     - _thresh: 0.01
-    - _threshold: 0
-    - _width: 500
+    - _threshold: 1
+    - _width: 32
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _direction: {r: 0.70710695, g: 0.70710677, b: -0, a: 0}
-    - _offset: {r: 0.16828966, g: 0.33333337, b: 0, a: 0}
+    - _direction: {r: 1, g: 1, b: 0, a: 0}
+    - _offset: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3907102284043737041}
   - component: {fileID: 7203090524803618142}
   - component: {fileID: 6892801256354142146}
+  - component: {fileID: 5885104301955230906}
   - component: {fileID: 5755278984368339774}
   - component: {fileID: 5227771211402378284}
   - component: {fileID: 4547743291378359035}
@@ -56,6 +57,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   bg: {fileID: 0}
+  laserPickupSpawnHits: 0
 --- !u!114 &6892801256354142146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +73,24 @@ MonoBehaviour:
   bounds: {fileID: 0}
   clonePrefab: {fileID: 2457702093903118618, guid: bb417e3f74526374089cde9acdf95ae2, type: 3}
   clones: []
+--- !u!114 &5885104301955230906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457702093903118618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def0c479857b39045991e2303783a474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDelay: 0
+  time: 0.2
+  speed: 25
+  shown: 1
+  startShown: 0
+  timer: 0
 --- !u!212 &5755278984368339774
 SpriteRenderer:
   m_ObjectHideFlags: 0
