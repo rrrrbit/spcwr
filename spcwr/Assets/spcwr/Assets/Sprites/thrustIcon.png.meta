@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 925da60a04c7a674d95c9b76bbd51f00
+guid: 61ee44a33123fcd4d992168a184e1aee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -451936745944525710
-    second: hollowShip_0
+      213: -6246550067481034566
+    second: thrustIcon_0
+  - first:
+      213: -2642472381749851007
+    second: thrustIcon_1
+  - first:
+      213: -8215032802973083567
+    second: thrustIcon_2
+  - first:
+      213: 4017701278141688325
+    second: thrustIcon_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 256
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,13 +148,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hollowShip_0
+      name: thrustIcon_0
       rect:
         serializedVersion: 2
-        x: 171
-        y: 0
-        width: 513
-        height: 256
+        x: 0
+        y: 43
+        width: 24
+        height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +163,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 274d70d8ce56ab9f0800000000000000
-      internalID: -451936745944525710
+      spriteID: ab0c91c2fcbcf49a0800000000000000
+      internalID: -6246550067481034566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thrustIcon_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 25
+        width: 6
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18c05058e5d045bd0800000000000000
+      internalID: -2642472381749851007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thrustIcon_2
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 20
+        width: 6
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1589b98d0375efd80800000000000000
+      internalID: -8215032802973083567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: thrustIcon_3
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 25
+        width: 6
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50aa449960eb1c730800000000000000
+      internalID: 4017701278141688325
       vertices: []
       indices: 
       edges: []
@@ -174,7 +249,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hollowShip_0: -451936745944525710
+      thrustIcon_0: -6246550067481034566
+      thrustIcon_1: -2642472381749851007
+      thrustIcon_2: -8215032802973083567
+      thrustIcon_3: 4017701278141688325
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

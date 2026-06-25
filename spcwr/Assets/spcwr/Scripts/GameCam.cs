@@ -18,7 +18,7 @@ public class GameCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        shakeMagnitude = shakeMagnitudeEased.Update(Time.deltaTime, 0);
+        shakeMagnitude = shakeMagnitudeEased.Update(Time.unscaledDeltaTime, 0);
 
         Vector2 shake = new Vector2(Mathf.PerlinNoise1D(Time.time * shakeFreq), Mathf.PerlinNoise1D(Time.time * shakeFreq + 500)) * 2 - Vector2.one;
 

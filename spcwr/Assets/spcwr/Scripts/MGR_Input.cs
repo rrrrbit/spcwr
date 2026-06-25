@@ -1,12 +1,13 @@
+
 using UnityEngine;
-using UnityEngine.Windows;
-using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.InputSystem;
 
 public class MGR_Input : MonoBehaviour
 {
     public Input input;
     Input.PlayerAActions actionsPlayerA;
     Input.PlayerBActions actionsPlayerB;
+    public Input.MenuActions actionsMenu;
 
     public ShipInput playerA;
     public ShipInput playerB;
@@ -15,11 +16,25 @@ public class MGR_Input : MonoBehaviour
     void Start()
     {
         input = new Input();
+
+        input.bindingMask = new InputBinding { groups = "Keyboard" };
         input.Enable();
         actionsPlayerA = input.PlayerA;
         actionsPlayerA.Enable();
         actionsPlayerB = input.PlayerB;
         actionsPlayerB.Enable();
+        actionsMenu = input.Menu;
+        actionsMenu.Enable();
+    }
+
+    public void DebugSetArcadeCtrls()
+    {
+        input.bindingMask = new InputBinding { groups = "Arcade" };
+    }
+
+    public void DebugSetKeyboardtrls()
+    {
+        input.bindingMask = new InputBinding { groups = "Keyboard" };
     }
 
     // Update is called once per frame

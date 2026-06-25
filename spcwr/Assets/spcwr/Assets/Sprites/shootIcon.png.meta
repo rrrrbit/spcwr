@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 925da60a04c7a674d95c9b76bbd51f00
+guid: db42e70564dbc6d4d915c3aba4bb1a35
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -451936745944525710
-    second: hollowShip_0
+      213: -2607983673879218859
+    second: shootIcon_0
+  - first:
+      213: 4742155836273353371
+    second: shootIcon_1
+  - first:
+      213: 4972321938832023626
+    second: shootIcon_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 256
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,13 +145,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hollowShip_0
+      name: shootIcon_0
       rect:
         serializedVersion: 2
-        x: 171
-        y: 0
-        width: 513
-        height: 256
+        x: 5
+        y: 57
+        width: 14
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +160,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 274d70d8ce56ab9f0800000000000000
-      internalID: -451936745944525710
+      spriteID: 55539629aa49ecbd0800000000000000
+      internalID: -2607983673879218859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shootIcon_1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 51
+        width: 6
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b926e9aab958fc140800000000000000
+      internalID: 4742155836273353371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shootIcon_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 24
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a40e6f8757c310540800000000000000
+      internalID: 4972321938832023626
       vertices: []
       indices: 
       edges: []
@@ -174,7 +224,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hollowShip_0: -451936745944525710
+      shootIcon_0: -2607983673879218859
+      shootIcon_1: 4742155836273353371
+      shootIcon_2: 4972321938832023626
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

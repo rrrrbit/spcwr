@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.ConstrainedExecution;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,20 +17,7 @@ public abstract class DesignToken<T> : ScriptableObject, IDesignToken
     }
 }
 
-[CustomEditor(typeof(DesignToken<>), true)]
-public class EDITOR_DesignToken : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();    
-        if (GUILayout.Button("Reload"))
-        {
-            ((IDesignToken)target).InvokeReload();
-        }
-    }
-}
-
-interface IDesignToken
+public interface IDesignToken
 {
     public void InvokeReload();
 }

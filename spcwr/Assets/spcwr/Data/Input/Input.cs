@@ -117,15 +117,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""turnDir"",
-                    ""type"": ""Value"",
-                    ""id"": ""47c1dfc0-893e-42bd-98dc-54f530e8036e"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -146,7 +137,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -157,7 +148,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -179,7 +170,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Controller"",
                     ""action"": ""turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -190,7 +181,40 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""ed5ea6be-6b6f-451e-8732-0d686f54c340"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""turn"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c1f430d3-4aa3-4d8f-8794-d89f61322e4c"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade"",
+                    ""action"": ""turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""133e1608-aaad-497e-8f20-d8b26b9a4936"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade"",
                     ""action"": ""turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -201,18 +225,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""thrust"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""115bd9e4-7350-4f6a-8f5e-79530362cdd8"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""thrust"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -223,7 +236,18 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1dddf062-0be6-4d62-9347-cd03f8800256"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade"",
                     ""action"": ""thrust"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -234,18 +258,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""730869e7-9271-45a9-8827-9cb0923bd27c"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -256,19 +269,19 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Controller"",
                     ""action"": ""shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8e00c104-57c7-48b2-9345-c94a8e761732"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""id"": ""a5ddfddf-543b-4fad-a688-b19f50e8080b"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""turnDir"",
+                    ""groups"": "";Arcade"",
+                    ""action"": ""shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -304,15 +317,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""turnDir"",
-                    ""type"": ""Value"",
-                    ""id"": ""5fc73823-fde2-425d-8597-7577a74e7304"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -333,7 +337,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": "";Keyboard&Mouse;Keyboard"",
                     ""action"": ""turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -344,21 +348,43 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": "";Keyboard&Mouse;Keyboard"",
                     ""action"": ""turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""9015e5ba-5add-434f-8981-68ac61a61b87"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""name"": ""1D Axis"",
+                    ""id"": ""cbcb1e90-be7b-47f1-b466-d5459d6493b9"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""turnDir"",
-                    ""isComposite"": false,
+                    ""groups"": """",
+                    ""action"": ""turn"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fcce21f7-c972-4711-b165-6005fe21a4f9"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade"",
+                    ""action"": ""turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""fa53e634-e3c7-4bed-a8f3-5ddb33cb1074"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade"",
+                    ""action"": ""turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -366,7 +392,18 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": "";Keyboard&Mouse;Keyboard"",
+                    ""action"": ""thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3b36a51-5b39-4a23-9c46-6dc7daa83e1d"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade"",
                     ""action"": ""thrust"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -377,8 +414,78 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": "";Keyboard&Mouse;Keyboard"",
                     ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c8be191-40e5-486d-adc4-9d5cf993cce0"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade"",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""5abe04e5-4a52-4348-879c-49e666c9e437"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9f0f194-5435-4425-ab88-76ebbcad937b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MainPause"",
+                    ""type"": ""Button"",
+                    ""id"": ""92e14753-e10c-494e-ab6c-f0bfb09a1f1d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""37b7c0f1-8400-4a10-96f9-021f6a993cb0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard;Arcade"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83771212-e758-4ef9-af29-bd0fa428b112"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade"",
+                    ""action"": ""MainPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87297f85-ffa3-4021-bfe0-b1f1ef682550"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade"",
+                    ""action"": ""MainPause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -387,64 +494,19 @@ public partial class @Input: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""Keyboard&Mouse"",
-            ""bindingGroup"": ""Keyboard&Mouse"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                },
-                {
-                    ""devicePath"": ""<Mouse>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
+            ""devices"": []
         },
         {
-            ""name"": ""Gamepad"",
-            ""bindingGroup"": ""Gamepad"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Gamepad>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
+            ""name"": ""Controller"",
+            ""bindingGroup"": ""Controller"",
+            ""devices"": []
         },
         {
-            ""name"": ""Touch"",
-            ""bindingGroup"": ""Touch"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Touchscreen>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Joystick"",
-            ""bindingGroup"": ""Joystick"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Joystick>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""XR"",
-            ""bindingGroup"": ""XR"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<XRController>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
+            ""name"": ""Arcade"",
+            ""bindingGroup"": ""Arcade"",
+            ""devices"": []
         }
     ]
 }");
@@ -453,19 +515,22 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_PlayerA_turn = m_PlayerA.FindAction("turn", throwIfNotFound: true);
         m_PlayerA_thrust = m_PlayerA.FindAction("thrust", throwIfNotFound: true);
         m_PlayerA_shoot = m_PlayerA.FindAction("shoot", throwIfNotFound: true);
-        m_PlayerA_turnDir = m_PlayerA.FindAction("turnDir", throwIfNotFound: true);
         // PlayerB
         m_PlayerB = asset.FindActionMap("PlayerB", throwIfNotFound: true);
         m_PlayerB_turn = m_PlayerB.FindAction("turn", throwIfNotFound: true);
         m_PlayerB_thrust = m_PlayerB.FindAction("thrust", throwIfNotFound: true);
         m_PlayerB_shoot = m_PlayerB.FindAction("shoot", throwIfNotFound: true);
-        m_PlayerB_turnDir = m_PlayerB.FindAction("turnDir", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
+        m_Menu_MainPause = m_Menu.FindAction("MainPause", throwIfNotFound: true);
     }
 
     ~@Input()
     {
         UnityEngine.Debug.Assert(!m_PlayerA.enabled, "This will cause a leak and performance issues, Input.PlayerA.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PlayerB.enabled, "This will cause a leak and performance issues, Input.PlayerB.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, Input.Menu.Disable() has not been called.");
     }
 
     /// <summary>
@@ -544,7 +609,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerA_turn;
     private readonly InputAction m_PlayerA_thrust;
     private readonly InputAction m_PlayerA_shoot;
-    private readonly InputAction m_PlayerA_turnDir;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerA".
     /// </summary>
@@ -568,10 +632,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerA/shoot".
         /// </summary>
         public InputAction @shoot => m_Wrapper.m_PlayerA_shoot;
-        /// <summary>
-        /// Provides access to the underlying input action "PlayerA/turnDir".
-        /// </summary>
-        public InputAction @turnDir => m_Wrapper.m_PlayerA_turnDir;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -607,9 +667,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @shoot.started += instance.OnShoot;
             @shoot.performed += instance.OnShoot;
             @shoot.canceled += instance.OnShoot;
-            @turnDir.started += instance.OnTurnDir;
-            @turnDir.performed += instance.OnTurnDir;
-            @turnDir.canceled += instance.OnTurnDir;
         }
 
         /// <summary>
@@ -630,9 +687,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @shoot.started -= instance.OnShoot;
             @shoot.performed -= instance.OnShoot;
             @shoot.canceled -= instance.OnShoot;
-            @turnDir.started -= instance.OnTurnDir;
-            @turnDir.performed -= instance.OnTurnDir;
-            @turnDir.canceled -= instance.OnTurnDir;
         }
 
         /// <summary>
@@ -673,7 +727,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerB_turn;
     private readonly InputAction m_PlayerB_thrust;
     private readonly InputAction m_PlayerB_shoot;
-    private readonly InputAction m_PlayerB_turnDir;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerB".
     /// </summary>
@@ -697,10 +750,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerB/shoot".
         /// </summary>
         public InputAction @shoot => m_Wrapper.m_PlayerB_shoot;
-        /// <summary>
-        /// Provides access to the underlying input action "PlayerB/turnDir".
-        /// </summary>
-        public InputAction @turnDir => m_Wrapper.m_PlayerB_turnDir;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -736,9 +785,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @shoot.started += instance.OnShoot;
             @shoot.performed += instance.OnShoot;
             @shoot.canceled += instance.OnShoot;
-            @turnDir.started += instance.OnTurnDir;
-            @turnDir.performed += instance.OnTurnDir;
-            @turnDir.canceled += instance.OnTurnDir;
         }
 
         /// <summary>
@@ -759,9 +805,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @shoot.started -= instance.OnShoot;
             @shoot.performed -= instance.OnShoot;
             @shoot.canceled -= instance.OnShoot;
-            @turnDir.started -= instance.OnTurnDir;
-            @turnDir.performed -= instance.OnTurnDir;
-            @turnDir.canceled -= instance.OnTurnDir;
         }
 
         /// <summary>
@@ -795,69 +838,150 @@ public partial class @Input: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerBActions" /> instance referencing this action map.
     /// </summary>
     public PlayerBActions @PlayerB => new PlayerBActions(this);
-    private int m_KeyboardMouseSchemeIndex = -1;
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
+    private readonly InputAction m_Menu_Pause;
+    private readonly InputAction m_Menu_MainPause;
     /// <summary>
-    /// Provides access to the input control scheme.
+    /// Provides access to input actions defined in input action map "Menu".
     /// </summary>
-    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme KeyboardMouseScheme
+    public struct MenuActions
     {
-        get
+        private @Input m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public MenuActions(@Input wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/Pause".
+        /// </summary>
+        public InputAction @Pause => m_Wrapper.m_Menu_Pause;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/MainPause".
+        /// </summary>
+        public InputAction @MainPause => m_Wrapper.m_Menu_MainPause;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="MenuActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="MenuActions" />
+        public void AddCallbacks(IMenuActions instance)
         {
-            if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard&Mouse");
-            return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+            if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+            @MainPause.started += instance.OnMainPause;
+            @MainPause.performed += instance.OnMainPause;
+            @MainPause.canceled += instance.OnMainPause;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="MenuActions" />
+        private void UnregisterCallbacks(IMenuActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+            @MainPause.started -= instance.OnMainPause;
+            @MainPause.performed -= instance.OnMainPause;
+            @MainPause.canceled -= instance.OnMainPause;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="MenuActions.UnregisterCallbacks(IMenuActions)" />.
+        /// </summary>
+        /// <seealso cref="MenuActions.UnregisterCallbacks(IMenuActions)" />
+        public void RemoveCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="MenuActions.AddCallbacks(IMenuActions)" />
+        /// <seealso cref="MenuActions.RemoveCallbacks(IMenuActions)" />
+        /// <seealso cref="MenuActions.UnregisterCallbacks(IMenuActions)" />
+        public void SetCallbacks(IMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
         }
     }
-    private int m_GamepadSchemeIndex = -1;
+    /// <summary>
+    /// Provides a new <see cref="MenuActions" /> instance referencing this action map.
+    /// </summary>
+    public MenuActions @Menu => new MenuActions(this);
+    private int m_KeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
     /// </summary>
     /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme GamepadScheme
+    public InputControlScheme KeyboardScheme
     {
         get
         {
-            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
-            return asset.controlSchemes[m_GamepadSchemeIndex];
+            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+            return asset.controlSchemes[m_KeyboardSchemeIndex];
         }
     }
-    private int m_TouchSchemeIndex = -1;
+    private int m_ControllerSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
     /// </summary>
     /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme TouchScheme
+    public InputControlScheme ControllerScheme
     {
         get
         {
-            if (m_TouchSchemeIndex == -1) m_TouchSchemeIndex = asset.FindControlSchemeIndex("Touch");
-            return asset.controlSchemes[m_TouchSchemeIndex];
+            if (m_ControllerSchemeIndex == -1) m_ControllerSchemeIndex = asset.FindControlSchemeIndex("Controller");
+            return asset.controlSchemes[m_ControllerSchemeIndex];
         }
     }
-    private int m_JoystickSchemeIndex = -1;
+    private int m_ArcadeSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
     /// </summary>
     /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme JoystickScheme
+    public InputControlScheme ArcadeScheme
     {
         get
         {
-            if (m_JoystickSchemeIndex == -1) m_JoystickSchemeIndex = asset.FindControlSchemeIndex("Joystick");
-            return asset.controlSchemes[m_JoystickSchemeIndex];
-        }
-    }
-    private int m_XRSchemeIndex = -1;
-    /// <summary>
-    /// Provides access to the input control scheme.
-    /// </summary>
-    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme XRScheme
-    {
-        get
-        {
-            if (m_XRSchemeIndex == -1) m_XRSchemeIndex = asset.FindControlSchemeIndex("XR");
-            return asset.controlSchemes[m_XRSchemeIndex];
+            if (m_ArcadeSchemeIndex == -1) m_ArcadeSchemeIndex = asset.FindControlSchemeIndex("Arcade");
+            return asset.controlSchemes[m_ArcadeSchemeIndex];
         }
     }
     /// <summary>
@@ -888,13 +1012,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "turnDir" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTurnDir(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerB" which allows adding and removing callbacks.
@@ -924,12 +1041,27 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="MenuActions.AddCallbacks(IMenuActions)" />
+    /// <seealso cref="MenuActions.RemoveCallbacks(IMenuActions)" />
+    public interface IMenuActions
+    {
         /// <summary>
-        /// Method invoked when associated input action "turnDir" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTurnDir(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MainPause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMainPause(InputAction.CallbackContext context);
     }
 }

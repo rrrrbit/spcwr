@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,8 @@ public class MGR_Game : MonoBehaviour
     public float restartTime;
     public float fastRestartTime;
     public float fastRestartThreshold;
+    public int scoreA;
+    public int scoreB;
 
     public float gameTimer;
     
@@ -42,7 +45,13 @@ public class MGR_Game : MonoBehaviour
     public bool downtime;
 
     public TMP_Text winText;
+    public TMP_Text scoreText;
 
+    public GameObject debugPanel;
+    public GameObject pauseOverlay;
+    public MGR_pause pause;
+
+    public bool paused;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,6 +65,23 @@ public class MGR_Game : MonoBehaviour
         if (downtime) return;
         gameTimer += Time.deltaTime;
         if (shipDied) FinishGame();
+
+        scoreText.text = "session score:\n" +
+            "<#" + colorShipA.ToHexString() + ">" + scoreA.ToString().PadLeft(3, '0') +
+            "</color> - " +
+            "<#" + colorShipB.ToHexString() + ">" + scoreB.ToString().PadLeft(3, '0') + 
+            "</color>\n\nround time:\n" +
+            Mathf.RoundToInt(gameTimer).ToString().PadLeft(4, '0');
+
+        if (MGR.input.actionsMenu.Pause.WasPressedThisFrame())
+        {
+            debugPanel.SetActive(!debugPanel.activeSelf);
+        }
+        if (MGR.input.actionsMenu.MainPause.WasPressedThisFrame())
+        {
+            paused = !paused;
+        }
+
     }
 
     void FinishGame()
@@ -73,12 +99,14 @@ public class MGR_Game : MonoBehaviour
             winText.text = "WIN";
             winText.color = colorShipB;
             winText.GetComponent<Flicker>().InInstant();
+            scoreB++;
         }
         else if (shipB.died)
         {
             winText.text = "WIN";
             winText.color = colorShipA;
             winText.GetComponent<Flicker>().InInstant();
+            scoreA++;
         }
 
         

@@ -31,7 +31,7 @@ public class TokenResolvableValue<T> : ITokenResolvableValue
     }
 }
 
-interface ITokenResolvableValue
+public interface ITokenResolvableValue
 {
     public void InvokeReload();
 }
