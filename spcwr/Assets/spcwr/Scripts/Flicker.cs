@@ -32,4 +32,16 @@ public class Flicker : MonoBehaviour
         timer = time + startDelay;
         shown = true;
     }
+
+    public virtual void InInstant()
+    {
+        timer = 0;
+        shown = true;
+    }
+
+    public virtual void Out()
+    {
+        timer = 0;
+        shown = false;
+    }
 }

@@ -10,6 +10,8 @@ public class LaserPickup : MonoBehaviour
     [SerializeField] LayerMask knockLayers;
 
     Vector2 velocityLastFrame;
+    [SerializeField] GameObject[] clearChildren;
+    [SerializeField] ParticleSystem ptcl;
 
     private void Update()
     {
@@ -23,6 +25,11 @@ public class LaserPickup : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         MGR.game.tempObjs.Add(gameObject);
 
+    }
+
+    private void OnDestroy()
+    {
+        ptcl.Stop();
     }
 
     private void FixedUpdate()
@@ -57,6 +64,11 @@ public class LaserPickup : MonoBehaviour
         if (collision.TryGetComponent(out Ship ship) && iTime <= 0)
         {
             MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 100, 40, 0.5f);
+            foreach (GameObject obj in clearChildren)
+            {
+                Destroy(obj);
+            }
+            transform.DetachChildren();
             Destroy(gameObject);
         }
 
@@ -65,9 +77,12 @@ public class LaserPickup : MonoBehaviour
             Vector2 deflect = Vector2.Reflect(velocityLastFrame, (transform.position.xy() - collision.ClosestPoint(transform.position)));
 
             MGR.vfx.PtclBurst(transform.position, deflect, 60, 60, 50, 1);
+
+            foreach (GameObject obj in clearChildren)
+            {
+                Destroy(obj);
+            }
             transform.DetachChildren();
-
-
             Destroy(gameObject);
         }
     }

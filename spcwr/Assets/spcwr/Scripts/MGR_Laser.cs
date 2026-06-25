@@ -9,7 +9,7 @@ public class MGR_Laser : MonoBehaviour
 {
     public bool active;
 
-    [SerializeField] float laserTimer;
+    public float laserTimer;
     [SerializeField] float trajLineAlphaMult;
     [SerializeField] AnimationCurve trajLineFlashLengthOverTime;
 

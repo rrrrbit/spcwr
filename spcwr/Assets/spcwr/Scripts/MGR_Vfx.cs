@@ -31,8 +31,8 @@ public class MGR_Vfx : MonoBehaviour
         cam.shakeMagnitudeEased.y += strength;
     }
 
-    public void PtclBurst(Vector3 position, Vector3 angle, float arcDegrees, int number, float speed, float lifetime)
-    {
+    public void PtclBurst(Vector3 position, Vector3 angle, float arcDegrees, int number, float speed, float lifetime, Color? color = null)
+    {    
         var thisBurst = Instantiate(ptclBurstPrefab, position, Quaternion.identity);
         thisBurst.transform.right = angle;
         var main = thisBurst.main;
@@ -41,6 +41,7 @@ public class MGR_Vfx : MonoBehaviour
         
         main.startSpeed = new(0, speed);
         main.startLifetime = new(lifetime / 10, lifetime);
+        main.startColor = color??Color.white;
 
         shape.arc = arcDegrees;
         shape.rotation = new(0, 0, -arcDegrees / 2);

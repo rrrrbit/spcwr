@@ -9,7 +9,7 @@ public class Star : MonoBehaviour
 
     public Renderer bg;
 
-    int hitCount;
+    public int hitCount;
     public int laserPickupSpawnHits;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

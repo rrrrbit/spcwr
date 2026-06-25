@@ -1,11 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class MGR_Game : MonoBehaviour
 {
+    public float restartTime;
+    public float fastRestartTime;
+    public float fastRestartThreshold;
+
+    public float gameTimer;
+    
     public Star star;
     public MGR_Laser laser;
     public Ship shipA;
@@ -20,6 +28,9 @@ public class MGR_Game : MonoBehaviour
     public Sprite spriteShipA;
     public Sprite spriteShipB;
 
+    public Color colorShipA;
+    public Color colorShipB;
+
     public GameObject pelletPrefab;
     public GameObject laserPickupPrefab;
 
@@ -29,6 +40,8 @@ public class MGR_Game : MonoBehaviour
 
     public bool shipDied;
     public bool downtime;
+
+    public TMP_Text winText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,23 +54,31 @@ public class MGR_Game : MonoBehaviour
     void Update()
     {
         if (downtime) return;
+        gameTimer += Time.deltaTime;
         if (shipDied) FinishGame();
     }
 
     void FinishGame()
     {
         downtime = true;
+        
         if (shipA.died && shipB.died)
         {
-            print("DRAW");
+            winText.text = "DRAW";
+            winText.color = Color.white;
+            winText.GetComponent<Flicker>().InInstant();
         }
         else if (shipA.died)
         {
-            print("SHIP B WIN");
+            winText.text = "WIN";
+            winText.color = colorShipB;
+            winText.GetComponent<Flicker>().InInstant();
         }
         else if (shipB.died)
         {
-            print("SHIP A WIN");
+            winText.text = "WIN";
+            winText.color = colorShipA;
+            winText.GetComponent<Flicker>().InInstant();
         }
 
         
@@ -66,7 +87,8 @@ public class MGR_Game : MonoBehaviour
 
     IEnumerator FinishGameCoroutine()
     {
-        yield return new WaitForSeconds(3);
+        float thisRestartTime = gameTimer > fastRestartThreshold ? restartTime : fastRestartTime;
+        yield return new WaitForSeconds(thisRestartTime);
         shipDied = false;
         downtime = false;
 
@@ -92,7 +114,10 @@ public class MGR_Game : MonoBehaviour
         shipA.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         shipB.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         star.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        star.hitCount = 0;
 
+        winText.GetComponent<Flicker>().Out();
+        gameTimer = 0;
         yield return null;
 
     }
@@ -126,6 +151,7 @@ public struct GameSettings
     public float pelletLifespan;
     public float pelletInheritVel;
     [Header("Laser")]
+    public float laserChargeShipTurnVel;
     public float laserPickupPelletKnockback;
     public float laserWidth;
     public float laserStartVel;

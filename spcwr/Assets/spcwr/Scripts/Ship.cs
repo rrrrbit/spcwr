@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using RBitUtils;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,15 +39,19 @@ public class Ship : MonoBehaviour
 
         ptclEmission.enabled = shipInput.thrust == 1;
 
+        Color shipColor = isPlayerA ? MGR.game.colorShipA : MGR.game.colorShipB;
         foreach (GameObject i in GetComponent<Wrap>().clones)
         {
-            i.GetComponent<SpriteRenderer>().sprite = isPlayerA ? MGR.game.spriteShipA : MGR.game.spriteShipB;
+            i.GetComponent<SpriteRenderer>().color = shipColor;
         }
+        var main = exhaustParticle.main;
+        main.startColor = shipColor;
     }
 
     private void FixedUpdate()
     {
-        rb.angularVelocity = MGR.game.settings.shipTurnVel * shipInput.turn;
+        float turnVel = MGR.game.laser.owner == this && MGR.game.laser.laserTimer != -1 ? MGR.game.settings.laserChargeShipTurnVel : MGR.game.settings.shipTurnVel;
+        rb.angularVelocity = turnVel * shipInput.turn;
         rb.AddForce(shipInput.thrust * MGR.game.settings.shipThrust * transform.right);
 
         Vector2 totalGrav = Vector2.zero;
@@ -69,7 +74,7 @@ public class Ship : MonoBehaviour
 
     public void Die()
     {
-        MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 250, 100, 3);
+        MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 250, 50, 3, GetComponent<SpriteRenderer>().color);
         died = true;
         MGR.game.shipDied = true;
         gameObject.SetActive(false);

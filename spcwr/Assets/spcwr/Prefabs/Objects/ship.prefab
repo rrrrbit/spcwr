@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDelay: 0
   time: 0.2
-  speed: 25
+  speed: 30
   shown: 1
   startShown: 0
   timer: 0
@@ -135,7 +135,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a77f8b3b88848ed41b5bc81034c0e56c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 925da60a04c7a674d95c9b76bbd51f00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

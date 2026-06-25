@@ -57,7 +57,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   bg: {fileID: 0}
-  laserPickupSpawnHits: 0
+  hitCount: 0
+  laserPickupSpawnHits: 5
 --- !u!114 &6892801256354142146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDelay: 0
   time: 0.2
-  speed: 25
+  speed: 30
   shown: 1
   startShown: 0
   timer: 0
