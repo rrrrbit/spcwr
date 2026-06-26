@@ -27,7 +27,7 @@ public class LaserSeg : MonoBehaviour
         col = GetComponent<EdgeCollider2D>();
         line = GetComponent<LineRenderer>();
         ptcl = GetComponentInChildren<ParticleSystem>();
-        line.widthMultiplier = MGR.game.settings.laserWidth;
+        line.widthMultiplier = MGR_Game.game.settings.laserWidth;
 
 
     }
@@ -56,7 +56,7 @@ public class LaserSeg : MonoBehaviour
         }
 
         lifespan -= Time.deltaTime;
-        line.widthMultiplier = MGR.game.settings.laserWidth * widthAnim.Evaluate(1- lifespan / maxLifespan);
+        line.widthMultiplier = MGR_Game.game.settings.laserWidth * widthAnim.Evaluate(1- lifespan / maxLifespan);
 
 
         if (lifespan < 0)

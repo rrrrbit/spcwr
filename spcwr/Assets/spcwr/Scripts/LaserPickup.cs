@@ -23,7 +23,7 @@ public class LaserPickup : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
-        MGR.game.tempObjs.Add(gameObject);
+        MGR_Game.game.tempObjs.Add(gameObject);
 
     }
 
@@ -38,12 +38,12 @@ public class LaserPickup : MonoBehaviour
         if (iTime > 0) return;
 
         Vector2 totalGrav = Vector2.zero;
-        foreach (GameObject obj in MGR.game.star.GetComponent<Wrap>().clones)
+        foreach (GameObject obj in MGR_Game.game.star.GetComponent<Wrap>().clones)
         {
             Vector2 d = obj.transform.position - transform.position;
             totalGrav += d.WithMag(1 / d.sqrMagnitude);
         }
-        rb.AddForce(totalGrav * MGR.game.settings.starGravity);
+        rb.AddForce(totalGrav * MGR_Game.game.settings.starGravity);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -54,7 +54,7 @@ public class LaserPickup : MonoBehaviour
         {
             print("a");
             Vector3 d = (transform.position - collision.transform.position).normalized;
-            Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR.game.settings.laserPickupPelletKnockback;
+            Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR_Game.game.settings.laserPickupPelletKnockback;
             rb.AddForce(force, ForceMode2D.Impulse);
         }
     }
@@ -63,7 +63,7 @@ public class LaserPickup : MonoBehaviour
     {
         if (collision.TryGetComponent(out Ship ship) && iTime <= 0)
         {
-            MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 100, 40, 0.5f);
+            MGR_Game.vfx.PtclBurst(transform.position, Vector3.right, 360, 100, 40, 0.5f);
             foreach (GameObject obj in clearChildren)
             {
                 Destroy(obj);
@@ -76,7 +76,7 @@ public class LaserPickup : MonoBehaviour
         {
             Vector2 deflect = Vector2.Reflect(velocityLastFrame, (transform.position.xy() - collision.ClosestPoint(transform.position)));
 
-            MGR.vfx.PtclBurst(transform.position, deflect, 60, 60, 50, 1);
+            MGR_Game.vfx.PtclBurst(transform.position, deflect, 60, 60, 50, 1);
 
             foreach (GameObject obj in clearChildren)
             {

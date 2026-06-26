@@ -16,8 +16,8 @@ public class MGR_Laser : MonoBehaviour
     public Ship owner;
     public Scene scene;
     public PhysicsScene2D pScene;
-    public List<List<Vector2>> positions;
-    public List<TrajectoryLine> trajectoryLines;
+    public List<List<Vector2>> positions = new();
+    public List<TrajectoryLine> trajectoryLines = new();
     public GameObject tracer;
     public Rigidbody2D tracerRb;
 
@@ -36,9 +36,7 @@ public class MGR_Laser : MonoBehaviour
         pScene = scene.GetPhysicsScene2D();
         SceneManager.MoveGameObjectToScene(tracer, scene);
 
-        positions = new List<List<Vector2>>();
-        trajectoryLines = new List<TrajectoryLine>();
-        for (int i = 0; i < MGR.game.settings.laserMaxWrap + 2; i++)
+        for (int i = 0; i < MGR_Game.game.settings.laserMaxWrap + 2; i++)
         {
             trajectoryLines.Add(Instantiate(trajectoryLinePrefab));
         }
@@ -49,8 +47,8 @@ public class MGR_Laser : MonoBehaviour
         laserTimer = -1;
         trajLineFlashAnim = 0;
         
-        MGR.vfx.Shake(4);
-        MGR.vfx.DirectionalImpactFrame(owner.transform.position, -owner.transform.right);
+        MGR_Game.vfx.Shake(4);
+        MGR_Game.vfx.DirectionalImpactFrame(owner.transform.position, -owner.transform.right);
 
         for (int i = 0; i < positions.Count; i++)
         {
@@ -62,12 +60,12 @@ public class MGR_Laser : MonoBehaviour
             thisLaserSeg.col.enabled = thisLaserSeg.col.SetPoints(positions[i]);
             thisLaserSeg.line.enabled = thisLaserSeg.col.enabled;
 
-            thisLaserSeg.col.edgeRadius = MGR.game.settings.laserWidth / 2;
+            thisLaserSeg.col.edgeRadius = MGR_Game.game.settings.laserWidth / 2;
 
             thisLaserSeg.line.positionCount = positions[i].Count;
             thisLaserSeg.line.SetPositions(positions[i].Select(x => x.xy()).ToArray());
             bool isStart = i == 0;
-            bool isEnd = i == MGR.game.settings.laserMaxWrap - 1;
+            bool isEnd = i == MGR_Game.game.settings.laserMaxWrap - 1;
 
             thisLaserSeg.isStart = isStart;
             bool extendStart = !isStart;
@@ -97,7 +95,7 @@ public class MGR_Laser : MonoBehaviour
 
             thisLaserSeg.PlayPtcl();
         }
-        owner.GetComponent<Rigidbody2D>().AddForce(-owner.transform.right * MGR.game.settings.laserRecoil, ForceMode2D.Impulse);
+        owner.GetComponent<Rigidbody2D>().AddForce(-owner.transform.right * MGR_Game.game.settings.laserRecoil, ForceMode2D.Impulse);
     }
 
     void UpdateTrajectoryLines()
@@ -114,7 +112,7 @@ public class MGR_Laser : MonoBehaviour
             trajectoryLines[i].line.SetPositions(positions[i].Select(x => x.xy()).ToArray());
 
             bool isStart = i == 0;
-            bool isEnd = i == MGR.game.settings.laserMaxWrap - 1;
+            bool isEnd = i == MGR_Game.game.settings.laserMaxWrap - 1;
 
             bool extendStart = !isStart;
             bool extendEnd = !isEnd || !endInMiddle;
@@ -134,13 +132,13 @@ public class MGR_Laser : MonoBehaviour
 
     public void StartLaser()
     {
-        laserTimer = MGR.game.settings.laserChargeTime;
+        laserTimer = MGR_Game.game.settings.laserChargeTime;
     }
 
     void UpdateTrajectory()
     {
         tracer.transform.SetPositionAndRotation(owner.transform.position, owner.shootOrigin.rotation);
-        tracerRb.linearVelocity = owner.shootOrigin.right * MGR.game.settings.laserStartVel;
+        tracerRb.linearVelocity = owner.shootOrigin.right * MGR_Game.game.settings.laserStartVel;
 
         int currentWraps = 0;
         float accmLength = 0;
@@ -149,24 +147,24 @@ public class MGR_Laser : MonoBehaviour
 
         positions.Clear();
         List<Vector2> thisSegment = new List<Vector2>();
-        while (accmLength < MGR.game.settings.laserMaxLength && currentWraps < MGR.game.settings.laserMaxWrap)
+        while (accmLength < MGR_Game.game.settings.laserMaxLength && currentWraps < MGR_Game.game.settings.laserMaxWrap)
         {
             if (!ignoreForces)
             {
                 Vector2 totalGrav = Vector2.zero;
-                foreach (GameObject obj in MGR.game.star.GetComponent<Wrap>().clones)
+                foreach (GameObject obj in MGR_Game.game.star.GetComponent<Wrap>().clones)
                 {
                     Vector2 d = obj.transform.position - tracer.transform.position;
                     totalGrav += d.WithMag(1 / d.sqrMagnitude);
                 }
-                tracerRb.AddForce(totalGrav * MGR.game.settings.starGravity);
+                tracerRb.AddForce(totalGrav * MGR_Game.game.settings.starGravity);
             }
 
             var oldPos = tracer.transform.position;
             pScene.Simulate(Time.fixedDeltaTime);
 
 
-            if (tracerRb.linearVelocity.sqrMagnitude > MGR.game.settings.laserStartVel * MGR.game.settings.laserStartVel * 3) ignoreForces = true;
+            if (tracerRb.linearVelocity.sqrMagnitude > MGR_Game.game.settings.laserStartVel * MGR_Game.game.settings.laserStartVel * 3) ignoreForces = true;
 
             bool afterShootOffset = accmLength * accmLength > (owner.transform.position - owner.shootOrigin.position).sqrMagnitude;
 
@@ -189,7 +187,7 @@ public class MGR_Laser : MonoBehaviour
                 thisSegmentAccmLength += (tracer.transform.position - oldPos).magnitude;
             }
         }
-        endInMiddle = currentWraps < MGR.game.settings.laserMaxWrap;
+        endInMiddle = currentWraps < MGR_Game.game.settings.laserMaxWrap;
         if (endInMiddle)
         {
             positions.Add(thisSegment.ToList());
@@ -213,7 +211,7 @@ public class MGR_Laser : MonoBehaviour
         if (laserTimer == -1) return;
 
         laserTimer -= Time.deltaTime;
-        trajLineFlashAnim += Time.deltaTime / trajLineFlashLengthOverTime.Evaluate(1 - laserTimer / MGR.game.settings.laserChargeTime);
+        trajLineFlashAnim += Time.deltaTime / trajLineFlashLengthOverTime.Evaluate(1 - laserTimer / MGR_Game.game.settings.laserChargeTime);
 
         foreach (var line in trajectoryLines)
         {

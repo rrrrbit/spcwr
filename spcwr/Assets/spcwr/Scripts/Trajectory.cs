@@ -31,31 +31,31 @@ public class Trajectory : MonoBehaviour
     void UpdateTrajectory()
     {
         tracer.transform.SetPositionAndRotation(start.position, start.rotation);
-        tracerRb.linearVelocity = transform.right * MGR.game.settings.laserStartVel;
+        tracerRb.linearVelocity = transform.right * MGR_Game.game.settings.laserStartVel;
 
         int currentWraps = 0;
         float accmLength = 0;
         bool ignoreForces = false;
         
         positions.Clear();
-        while (accmLength < MGR.game.settings.laserMaxLength && currentWraps < MGR.game.settings.laserMaxWrap)
+        while (accmLength < MGR_Game.game.settings.laserMaxLength && currentWraps < MGR_Game.game.settings.laserMaxWrap)
         {
             if (!ignoreForces)
             {
                 Vector2 totalGrav = Vector2.zero;
-                foreach (GameObject obj in MGR.game.star.GetComponent<Wrap>().clones)
+                foreach (GameObject obj in MGR_Game.game.star.GetComponent<Wrap>().clones)
                 {
                     Vector2 d = obj.transform.position - tracer.transform.position;
                     totalGrav += d.WithMag(1 / d.sqrMagnitude);
                 }
-                tracerRb.AddForce(totalGrav * MGR.game.settings.starGravity);
+                tracerRb.AddForce(totalGrav * MGR_Game.game.settings.starGravity);
             }
 
             var oldPos = tracer.transform.position;
             pScene.Simulate(Time.fixedDeltaTime);
 
 
-            if (tracerRb.linearVelocity.sqrMagnitude > MGR.game.settings.laserStartVel*MGR.game.settings.laserStartVel *3) ignoreForces = true;
+            if (tracerRb.linearVelocity.sqrMagnitude > MGR_Game.game.settings.laserStartVel*MGR_Game.game.settings.laserStartVel *3) ignoreForces = true;
             //positions[i] = transform.position;
             accmLength+= (tracer.transform.position - oldPos).magnitude;
             if (tracer.GetComponent<Wrap>().WrapPos()) currentWraps++;

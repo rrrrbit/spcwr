@@ -15,7 +15,7 @@ public class Pellet : MonoBehaviour
         lifeTimer = lifespan;
         ptcl = GetComponentInChildren<ParticleSystem>();
 
-        MGR.game.tempObjs.Add(gameObject);
+        MGR_Game.game.tempObjs.Add(gameObject);
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class Pellet : MonoBehaviour
         lifeTimer -= Time.deltaTime;
         if (lifeTimer < 0)
         {
-            MGR.vfx.PtclBurst(transform.position, Vector3.right, 360, 50, 40, 0.3f);
+            MGR_Game.vfx.PtclBurst(transform.position, Vector3.right, 360, 50, 40, 0.3f);
             transform.DetachChildren();
             Destroy(gameObject);
         }
@@ -44,7 +44,7 @@ public class Pellet : MonoBehaviour
     {
         Vector2 deflect = Vector2.Reflect(velocityLastFrame, collision.GetContact(0).normal);
         
-        MGR.vfx.PtclBurst(transform.position, deflect, 45, 40, 40, 1);
+        MGR_Game.vfx.PtclBurst(transform.position, deflect, 45, 40, 40, 1);
         transform.DetachChildren();
 
 
@@ -55,7 +55,7 @@ public class Pellet : MonoBehaviour
     {
         Vector2 deflect = Vector2.Reflect(velocityLastFrame, (transform.position.xy() - collision.ClosestPoint(transform.position)));
 
-        MGR.vfx.PtclBurst(transform.position, deflect, 45, 40, 40, 1);
+        MGR_Game.vfx.PtclBurst(transform.position, deflect, 45, 40, 40, 1);
         transform.DetachChildren();
 
 

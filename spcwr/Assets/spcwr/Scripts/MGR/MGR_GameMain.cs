@@ -1,3 +1,4 @@
+using RBitUtils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class MGR_Game : MonoBehaviour
+public class MGR_GameMain : MonoBehaviour
 {
     public float restartTime;
     public float fastRestartTime;
@@ -37,7 +38,7 @@ public class MGR_Game : MonoBehaviour
     public GameObject pelletPrefab;
     public GameObject laserPickupPrefab;
 
-    public List<GameObject> tempObjs;
+    public List<GameObject> tempObjs = new();
 
     public float laserPickupEjectForce;
 
@@ -48,15 +49,12 @@ public class MGR_Game : MonoBehaviour
     public TMP_Text scoreText;
 
     public GameObject debugPanel;
-    public GameObject pauseOverlay;
-    public MGR_pause pause;
 
     public bool paused;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         laser = GetComponent<MGR_Laser>();
-        tempObjs = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -67,21 +65,9 @@ public class MGR_Game : MonoBehaviour
         if (shipDied) FinishGame();
 
         scoreText.text = "session score:\n" +
-            "<#" + colorShipA.ToHexString() + ">" + scoreA.ToString().PadLeft(3, '0') +
-            "</color> - " +
-            "<#" + colorShipB.ToHexString() + ">" + scoreB.ToString().PadLeft(3, '0') + 
-            "</color>\n\nround time:\n" +
+            scoreA.ToString().PadLeft(3, '0').Color(colorShipA) + " - " + scoreB.ToString().PadLeft(3, '0').Color(colorShipB) +
+            "\n\nround time:\n" +
             Mathf.RoundToInt(gameTimer).ToString().PadLeft(4, '0');
-
-        if (MGR.input.actionsMenu.Pause.WasPressedThisFrame())
-        {
-            debugPanel.SetActive(!debugPanel.activeSelf);
-        }
-        if (MGR.input.actionsMenu.MainPause.WasPressedThisFrame())
-        {
-            paused = !paused;
-        }
-
     }
 
     void FinishGame()
@@ -163,30 +149,4 @@ public class MGR_Game : MonoBehaviour
         thisPickup.GetComponent<Wrap>().bounds = bounds;
         thisPickup.GetComponent<Rigidbody2D>().AddForce(UnityEngine.Random.insideUnitCircle.normalized * laserPickupEjectForce, ForceMode2D.Impulse);
     }
-}
-
-[Serializable]
-public struct GameSettings
-{
-    [Header("Star")]
-    public float starGravity;
-    public float starPelletKnockback;
-    [Header("Ship Movement")]
-    public float shipTurnVel;
-    public float shipThrust;
-    [Header("Ship Shooting")]
-    public float shipReloadTime;
-    public float shipRecoil;
-    public float pelletSpeed;
-    public float pelletLifespan;
-    public float pelletInheritVel;
-    [Header("Laser")]
-    public float laserChargeShipTurnVel;
-    public float laserPickupPelletKnockback;
-    public float laserWidth;
-    public float laserStartVel;
-    public float laserMaxLength;
-    public float laserMaxWrap;
-    public float laserChargeTime;
-    public float laserRecoil;
 }

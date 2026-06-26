@@ -3,6 +3,7 @@ namespace RBitUtils
 	using System;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using Unity.VisualScripting;
     using UnityEngine;
     public static class Misc
     {
@@ -42,6 +43,18 @@ namespace RBitUtils
         public static int Rows<T>(this T[,] self) => self.GetLength(0);
         public static int Cols<T>(this T[,] self) => self.GetLength(1);
         public static Vector2Int Dimensions<T>(this T[,] self) => new(self.GetLength(0), self.GetLength(1));
+        
+        /// <summary>
+        /// Wrap a string in a rich text color tag.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="color"></param>
+        /// <param name="resetEnd"></param>
+        /// <returns></returns>
+        public static string Color(this string str, Color color, bool resetEnd = true)
+        {
+            return $"<#{color.ToHexString()}>{str}{(resetEnd?"</color>":"")}";
+        }
     }
 
     public static class LerpPlus

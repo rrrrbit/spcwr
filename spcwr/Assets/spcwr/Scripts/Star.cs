@@ -40,13 +40,13 @@ public class Star : MonoBehaviour
                 if (hitCount == laserPickupSpawnHits)
                 {
                     hitCount = 0;
-                    MGR.game.SpawnLaserPickup();
+                    MGR_Game.game.SpawnLaserPickup();
                 }
             }
             
             Vector3 d = (transform.position - collision.transform.position).normalized;
-            Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR.game.settings.starPelletKnockback;
-            MGR.vfx.Shake(force.magnitude * MGR.vfx.starShakeMultiplier);
+            Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR_Game.game.settings.starPelletKnockback;
+            MGR_Game.vfx.Shake(force.magnitude * MGR_Game.vfx.starShakeMultiplier);
             rb.AddForce(force, ForceMode2D.Impulse);
         }
     }
