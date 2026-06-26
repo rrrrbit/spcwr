@@ -87,6 +87,8 @@ public class MGR_Game : MonoBehaviour
     void FinishGame()
     {
         downtime = true;
+        laser.owner = null;
+        laser.laserTimer = -1;
         
         if (shipA.died && shipB.died)
         {

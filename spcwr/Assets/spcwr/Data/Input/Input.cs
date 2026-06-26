@@ -453,6 +453,69 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Any"",
+                    ""type"": ""Button"",
+                    ""id"": ""1251f47e-81f2-4b27-abc0-bf99a418e0ca"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""2ba81f99-7004-4b06-8e26-cca94cd3554b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""257ab3f4-8cce-4d44-a8ab-bd7899745f4e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""514d1237-1823-4e28-9c78-4811f335394b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LMB"",
+                    ""type"": ""Button"",
+                    ""id"": ""090be346-3208-4385-ac1f-45dc52e5396b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RMB"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd9a49fb-85b7-44bc-8103-a852ce7c9ac1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MMB"",
+                    ""type"": ""Button"",
+                    ""id"": ""918e86eb-a5a3-4b1e-9e81-bdb33c75e567"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -486,6 +549,138 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Arcade"",
                     ""action"": ""MainPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ac7d1ba-4b92-47ce-8c14-0fe09df252f8"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Arcade;Keyboard"",
+                    ""action"": ""Any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""dcf0a293-847c-44d1-9d4d-2c17ffee8281"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""cf256d67-41d8-4e5c-affe-6e8e3c8aba41"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""efa6ae3e-9ac7-4480-b102-24c9dabb7365"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""671ccd86-ac14-487f-bebd-fd6306e78d8b"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""2e34261d-e32d-40aa-8c45-1f70723d8648"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f3af86b-104c-4bad-853b-cfff088828ba"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a8ec85b-7236-4020-8444-333e6c019973"",
+                    ""path"": ""*/{Submit}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard;Controller"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9af487f4-a0ed-46d1-9085-c9c6e17cd53d"",
+                    ""path"": ""*/{Cancel}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard;Controller"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56f99704-af3e-4bc5-acfc-75f23064a7d8"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""LMB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efdc4afc-2535-4f35-b3b5-13953d3a4e4d"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""RMB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d64e44db-1c9b-4e62-9296-12c36614ceca"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MMB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -524,6 +719,13 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
         m_Menu_MainPause = m_Menu.FindAction("MainPause", throwIfNotFound: true);
+        m_Menu_Any = m_Menu.FindAction("Any", throwIfNotFound: true);
+        m_Menu_Navigate = m_Menu.FindAction("Navigate", throwIfNotFound: true);
+        m_Menu_Submit = m_Menu.FindAction("Submit", throwIfNotFound: true);
+        m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
+        m_Menu_LMB = m_Menu.FindAction("LMB", throwIfNotFound: true);
+        m_Menu_RMB = m_Menu.FindAction("RMB", throwIfNotFound: true);
+        m_Menu_MMB = m_Menu.FindAction("MMB", throwIfNotFound: true);
     }
 
     ~@Input()
@@ -844,6 +1046,13 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
     private readonly InputAction m_Menu_Pause;
     private readonly InputAction m_Menu_MainPause;
+    private readonly InputAction m_Menu_Any;
+    private readonly InputAction m_Menu_Navigate;
+    private readonly InputAction m_Menu_Submit;
+    private readonly InputAction m_Menu_Cancel;
+    private readonly InputAction m_Menu_LMB;
+    private readonly InputAction m_Menu_RMB;
+    private readonly InputAction m_Menu_MMB;
     /// <summary>
     /// Provides access to input actions defined in input action map "Menu".
     /// </summary>
@@ -863,6 +1072,34 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Menu/MainPause".
         /// </summary>
         public InputAction @MainPause => m_Wrapper.m_Menu_MainPause;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/Any".
+        /// </summary>
+        public InputAction @Any => m_Wrapper.m_Menu_Any;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/Navigate".
+        /// </summary>
+        public InputAction @Navigate => m_Wrapper.m_Menu_Navigate;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/Submit".
+        /// </summary>
+        public InputAction @Submit => m_Wrapper.m_Menu_Submit;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/Cancel".
+        /// </summary>
+        public InputAction @Cancel => m_Wrapper.m_Menu_Cancel;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/LMB".
+        /// </summary>
+        public InputAction @LMB => m_Wrapper.m_Menu_LMB;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/RMB".
+        /// </summary>
+        public InputAction @RMB => m_Wrapper.m_Menu_RMB;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/MMB".
+        /// </summary>
+        public InputAction @MMB => m_Wrapper.m_Menu_MMB;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -895,6 +1132,27 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @MainPause.started += instance.OnMainPause;
             @MainPause.performed += instance.OnMainPause;
             @MainPause.canceled += instance.OnMainPause;
+            @Any.started += instance.OnAny;
+            @Any.performed += instance.OnAny;
+            @Any.canceled += instance.OnAny;
+            @Navigate.started += instance.OnNavigate;
+            @Navigate.performed += instance.OnNavigate;
+            @Navigate.canceled += instance.OnNavigate;
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
+            @LMB.started += instance.OnLMB;
+            @LMB.performed += instance.OnLMB;
+            @LMB.canceled += instance.OnLMB;
+            @RMB.started += instance.OnRMB;
+            @RMB.performed += instance.OnRMB;
+            @RMB.canceled += instance.OnRMB;
+            @MMB.started += instance.OnMMB;
+            @MMB.performed += instance.OnMMB;
+            @MMB.canceled += instance.OnMMB;
         }
 
         /// <summary>
@@ -912,6 +1170,27 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @MainPause.started -= instance.OnMainPause;
             @MainPause.performed -= instance.OnMainPause;
             @MainPause.canceled -= instance.OnMainPause;
+            @Any.started -= instance.OnAny;
+            @Any.performed -= instance.OnAny;
+            @Any.canceled -= instance.OnAny;
+            @Navigate.started -= instance.OnNavigate;
+            @Navigate.performed -= instance.OnNavigate;
+            @Navigate.canceled -= instance.OnNavigate;
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
+            @LMB.started -= instance.OnLMB;
+            @LMB.performed -= instance.OnLMB;
+            @LMB.canceled -= instance.OnLMB;
+            @RMB.started -= instance.OnRMB;
+            @RMB.performed -= instance.OnRMB;
+            @RMB.canceled -= instance.OnRMB;
+            @MMB.started -= instance.OnMMB;
+            @MMB.performed -= instance.OnMMB;
+            @MMB.canceled -= instance.OnMMB;
         }
 
         /// <summary>
@@ -1063,5 +1342,54 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMainPause(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Any" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAny(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Navigate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavigate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Submit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSubmit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Cancel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCancel(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LMB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLMB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RMB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRMB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MMB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMMB(InputAction.CallbackContext context);
     }
 }
