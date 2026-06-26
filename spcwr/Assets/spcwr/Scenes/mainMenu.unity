@@ -290,7 +290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 139.3}
+  m_AnchoredPosition: {x: 0, y: 155.3}
   m_SizeDelta: {x: 854.459, y: 92.439}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &444975941
@@ -515,11 +515,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1245642905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 239.8}
-  m_SizeDelta: {x: 799.535, y: 209.84}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -192}
+  m_SizeDelta: {x: 799.535, y: 209.83997}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &522998866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -952,11 +952,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1245642905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -419.4}
-  m_SizeDelta: {x: 564.732, y: 92.439}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 192}
+  m_SizeDelta: {x: 564.732, y: 92.438995}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1085352431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,7 +977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: press any key to play
+  m_text: PRESS ANY KEY TO CONTINUE.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9daab707f7c4ef545a380cfaa0cd5702, type: 2}
   m_sharedMaterial: {fileID: 113204256782328498, guid: 9daab707f7c4ef545a380cfaa0cd5702, type: 2}
@@ -1128,6 +1128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1342318496}
+  - component: {fileID: 1342318497}
   m_Layer: 0
   m_Name: SERVICES
   m_TagString: Untagged
@@ -1150,6 +1151,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1342318497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342318495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911c5e8d7b4655d4092c66789b705e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameParameters: []
 --- !u!1 &1370743740
 GameObject:
   m_ObjectHideFlags: 0

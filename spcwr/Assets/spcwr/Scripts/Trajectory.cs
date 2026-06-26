@@ -48,7 +48,7 @@ public class Trajectory : MonoBehaviour
                     Vector2 d = obj.transform.position - tracer.transform.position;
                     totalGrav += d.WithMag(1 / d.sqrMagnitude);
                 }
-                tracerRb.AddForce(totalGrav * MGR_Game.game.settings.starGravity);
+                tracerRb.AddForce(totalGrav * MGR_Game.game.settings.gravity);
             }
 
             var oldPos = tracer.transform.position;

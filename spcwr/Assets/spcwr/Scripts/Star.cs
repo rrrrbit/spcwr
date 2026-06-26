@@ -45,7 +45,7 @@ public class Star : MonoBehaviour
             }
             
             Vector3 d = (transform.position - collision.transform.position).normalized;
-            Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR_Game.game.settings.starPelletKnockback;
+            Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR_Game.game.settings.starBulletKnockback;
             MGR_Game.vfx.Shake(force.magnitude * MGR_Game.vfx.starShakeMultiplier);
             rb.AddForce(force, ForceMode2D.Impulse);
         }

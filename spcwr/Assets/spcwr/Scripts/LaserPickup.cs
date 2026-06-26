@@ -43,7 +43,7 @@ public class LaserPickup : MonoBehaviour
             Vector2 d = obj.transform.position - transform.position;
             totalGrav += d.WithMag(1 / d.sqrMagnitude);
         }
-        rb.AddForce(totalGrav * MGR_Game.game.settings.starGravity);
+        rb.AddForce(totalGrav * MGR_Game.game.settings.gravity);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -54,7 +54,7 @@ public class LaserPickup : MonoBehaviour
         {
             print("a");
             Vector3 d = (transform.position - collision.transform.position).normalized;
-            Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR_Game.game.settings.laserPickupPelletKnockback;
+            Vector2 force = Vector3.Project(collision.relativeVelocity, d) * MGR_Game.game.settings.laserPickupBulletKnockback;
             rb.AddForce(force, ForceMode2D.Impulse);
         }
     }

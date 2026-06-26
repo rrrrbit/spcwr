@@ -34,7 +34,7 @@ public class Ship : MonoBehaviour
         if (shootTimer <= 0 && shipInput.shoot)
         {
             Shoot();
-            shootTimer = MGR_Game.game.settings.shipReloadTime;
+            shootTimer = MGR_Game.game.settings.reloadTime;
         }
 
         ptclEmission.enabled = shipInput.thrust == 1;
@@ -50,9 +50,9 @@ public class Ship : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float turnVel = MGR_Game.game.laser.owner == this && MGR_Game.game.laser.laserTimer != -1 ? MGR_Game.game.settings.laserChargeShipTurnVel : MGR_Game.game.settings.shipTurnVel;
+        float turnVel = MGR_Game.game.laser.owner == this && MGR_Game.game.laser.laserTimer != -1 ? MGR_Game.game.settings.laserChargeShipSpeed : MGR_Game.game.settings.turnSpeed;
         rb.angularVelocity = turnVel * shipInput.turn;
-        rb.AddForce(shipInput.thrust * MGR_Game.game.settings.shipThrust * transform.right);
+        rb.AddForce(shipInput.thrust * MGR_Game.game.settings.thrust * transform.right);
 
         Vector2 totalGrav = Vector2.zero;
         foreach (GameObject obj in MGR_Game.game.star.GetComponent<Wrap>().clones)
@@ -60,16 +60,16 @@ public class Ship : MonoBehaviour
             Vector2 d = obj.transform.position - transform.position;
             totalGrav += d.WithMag(1 / d.sqrMagnitude);
         }
-        rb.AddForce(totalGrav * MGR_Game.game.settings.starGravity);
+        rb.AddForce(totalGrav * MGR_Game.game.settings.gravity);
     }
 
     void Shoot()
     {
         GameObject thisPellet = Instantiate(MGR_Game.game.pelletPrefab, shootOrigin.position, shootOrigin.rotation);
-        thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * MGR_Game.game.settings.pelletSpeed + rb.linearVelocity.xy() * MGR_Game.game.settings.pelletInheritVel;
+        thisPellet.GetComponent<Rigidbody2D>().linearVelocity = transform.right * MGR_Game.game.settings.bulletVel + rb.linearVelocity.xy() * MGR_Game.game.settings.bulletInheritShipVel;
         thisPellet.GetComponent<Wrap>().bounds = MGR_Game.game.bounds;
-        thisPellet.GetComponent<Pellet>().lifespan = MGR_Game.game.settings.pelletLifespan;
-        rb.AddForce(-transform.right * MGR_Game.game.settings.shipRecoil, ForceMode2D.Impulse);
+        thisPellet.GetComponent<Pellet>().lifespan = MGR_Game.game.settings.bulletLifespan;
+        rb.AddForce(-transform.right * MGR_Game.game.settings.bulletRecoil, ForceMode2D.Impulse);
     }
 
     public void Die()

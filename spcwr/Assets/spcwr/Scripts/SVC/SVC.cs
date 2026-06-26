@@ -13,7 +13,8 @@ public class SVC : MonoBehaviour
         if (Instance != null) Debug.LogWarning("Replacing service manager");
         Instance = this;
 
-        Instance = this;
+        RegisterService(GetComponent<SVC_Data>());
+        
     }
 
     void RegisterService<T>(T impl)
