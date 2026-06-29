@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &956979191367835409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8334865008140626865}
+  - component: {fileID: 3316430836913362304}
+  - component: {fileID: 5530435154150946034}
+  - component: {fileID: 6908850727814451674}
+  m_Layer: 0
+  m_Name: SERVICES
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8334865008140626865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956979191367835409}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3316430836913362304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956979191367835409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911c5e8d7b4655d4092c66789b705e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameParameters:
+  - name: gravity
+    value: 2000
+  - name: starBulletKnockback
+    value: 0.3
+  - name: turnSpeed
+    value: -225
+  - name: thrust
+    value: 30
+  - name: bulletRecoil
+    value: 3
+  - name: laserRecoil
+    value: 20
+  - name: reloadTime
+    value: 0.3
+  - name: bulletVel
+    value: 50
+  - name: bulletLife
+    value: 3
+  - name: bulletKeptShipVelMultiplier
+    value: 1
+  - name: laserPickupBulletKnockback
+    value: 0.5
+  - name: laserPickupSpawnStarHits
+    value: 5
+  - name: laserChargeTime
+    value: 5
+  - name: laserChargeTurnSpeed
+    value: -90
+  - name: laserWidth
+    value: 15
+  - name: laserPathStartVel
+    value: 40
+  - name: laserMaxLength
+    value: 200
+  - name: laserMaxEdgeLoop
+    value: 2
+--- !u!114 &5530435154150946034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956979191367835409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0be32f6ddc48e04883bdbc19d169b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6908850727814451674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956979191367835409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dc10a006fa3954da635a2f0a120b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

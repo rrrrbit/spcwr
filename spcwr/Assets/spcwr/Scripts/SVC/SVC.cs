@@ -7,12 +7,17 @@ public class SVC : MonoBehaviour
     public static SVC Instance { get; private set; }
     Dictionary<Type, object> services = new();
 
-    private void Awake()
+    private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        if (Instance != null) Debug.LogWarning("Replacing service manager");
+        if (Instance != null)
+        {
+            Debug.LogWarning("Replacing service manager");
+            Destroy(Instance);
+        }
         Instance = this;
 
+        RegisterService(GetComponent<SVC_Input>());
         RegisterService(GetComponent<SVC_Data>());
         
     }
@@ -24,7 +29,7 @@ public class SVC : MonoBehaviour
 
     public static T Get<T>()
     {
-        if (Instance.services.TryGetValue(typeof(T), out var impl))
+        if (Instance.services.TryGetValue(typeof(T), out var impl)) 
         {
             return (T)impl;
         }
