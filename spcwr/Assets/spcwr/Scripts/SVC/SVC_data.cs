@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SVC_Data : MonoBehaviour
 {
-    public List<GameParameter> gameParameters = new();
+    public GameParameter[] gameParameters;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +23,16 @@ public class SVC_Data : MonoBehaviour
             }
         }
         return 0;
+    }
+
+    public void ReadParamFile()
+    {
+
+    }
+
+    public void WriteParamFile()
+    {
+
     }
 
     // Update is called once per frame

@@ -465,9 +465,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Navigate"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""2ba81f99-7004-4b06-8e26-cca94cd3554b"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -516,6 +516,24 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Button"",
+                    ""id"": ""1fc01984-f5d1-480f-a53f-4183503e920d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""Value"",
+                    ""id"": ""7a8b4a97-aa43-448f-892b-018f0cef294b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -683,6 +701,50 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""action"": ""MMB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""fea3b2b0-d54e-4819-83b8-330008d81551"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fac73972-08d3-4e43-b27a-2afaae9357b7"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""0b61937d-d95c-49d3-bac6-38ebd6b964dd"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5c34bb1-5564-4902-9246-225d51d58967"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -726,6 +788,8 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_Menu_LMB = m_Menu.FindAction("LMB", throwIfNotFound: true);
         m_Menu_RMB = m_Menu.FindAction("RMB", throwIfNotFound: true);
         m_Menu_MMB = m_Menu.FindAction("MMB", throwIfNotFound: true);
+        m_Menu_Scroll = m_Menu.FindAction("Scroll", throwIfNotFound: true);
+        m_Menu_Point = m_Menu.FindAction("Point", throwIfNotFound: true);
     }
 
     ~@Input()
@@ -1053,6 +1117,8 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputAction m_Menu_LMB;
     private readonly InputAction m_Menu_RMB;
     private readonly InputAction m_Menu_MMB;
+    private readonly InputAction m_Menu_Scroll;
+    private readonly InputAction m_Menu_Point;
     /// <summary>
     /// Provides access to input actions defined in input action map "Menu".
     /// </summary>
@@ -1100,6 +1166,14 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Menu/MMB".
         /// </summary>
         public InputAction @MMB => m_Wrapper.m_Menu_MMB;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/Scroll".
+        /// </summary>
+        public InputAction @Scroll => m_Wrapper.m_Menu_Scroll;
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/Point".
+        /// </summary>
+        public InputAction @Point => m_Wrapper.m_Menu_Point;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1153,6 +1227,12 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @MMB.started += instance.OnMMB;
             @MMB.performed += instance.OnMMB;
             @MMB.canceled += instance.OnMMB;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
+            @Point.started += instance.OnPoint;
+            @Point.performed += instance.OnPoint;
+            @Point.canceled += instance.OnPoint;
         }
 
         /// <summary>
@@ -1191,6 +1271,12 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @MMB.started -= instance.OnMMB;
             @MMB.performed -= instance.OnMMB;
             @MMB.canceled -= instance.OnMMB;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
+            @Point.started -= instance.OnPoint;
+            @Point.performed -= instance.OnPoint;
+            @Point.canceled -= instance.OnPoint;
         }
 
         /// <summary>
@@ -1391,5 +1477,19 @@ public partial class @Input: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMMB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Scroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScroll(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Point" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPoint(InputAction.CallbackContext context);
     }
 }
