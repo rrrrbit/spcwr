@@ -1,6 +1,9 @@
+using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.UI;
 using static UnityEditor.Progress;
 
 public class MGR_Settings : MonoBehaviour
@@ -31,7 +34,31 @@ public class MGR_Settings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(inputModule.move.ToInputAction().ReadValue<Vector2>());
-        //FUCKKKKK UNITY'S UIIIIIIII
+
+        var upDown = inputModule.move.ToInputAction().ReadValue<Vector2>().y;
+        Selectable currentSelectable = null;
+        if (EventSystem.current.currentSelectedGameObject != null)
+        {
+            currentSelectable = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
+            print("found selectable");
+        }
+
+        if (currentSelectable != null && currentSelectable.TryGetComponent<TMP_InputField>(out _))
+        {
+            print("selectable is input field");
+            if (upDown < 0)
+            {
+                EventSystem.current.SetSelectedGameObject(currentSelectable.FindSelectableOnDown().gameObject);
+                print("go down");
+            }
+            else if (upDown > 0)
+            {
+                EventSystem.current.SetSelectedGameObject(currentSelectable.FindSelectableOnUp().gameObject);
+                print("go up");
+
+
+            }
+        }
+        
     }
 }
