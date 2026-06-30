@@ -11,27 +11,43 @@ namespace RBitUtils
 
     public static class Misc
     {
-        public static void SnapTo(this ScrollRect scroller, RectTransform child)
+        public static void ScrollTo(this ScrollRect scroller, RectTransform child, float padding = 0, bool vertical = true, bool horizontal = false)
         {
             Canvas.ForceUpdateCanvases();
-            var contentPos = (Vector2)scroller.transform.InverseTransformPoint(scroller.content.position);
-            var childPos = (Vector2)scroller.transform.InverseTransformPoint(child.position);
 
-            Rect contentRect = scroller.content.GetWorldRect();
             Rect childRect = child.GetWorldRect();
+            Rect viewportRect = scroller.viewport.GetWorldRect();
 
-            Debug.Log(scroller.transform.InverseTransformPoint(contentRect.max));
-            Debug.Log(scroller.transform.InverseTransformPoint(childRect.max));
+            childRect.max = scroller.transform.InverseTransformPoint(childRect.max);
+            childRect.min = scroller.transform.InverseTransformPoint(childRect.min);
+            viewportRect.max = scroller.transform.InverseTransformPoint(viewportRect.max);
+            viewportRect.min = scroller.transform.InverseTransformPoint(viewportRect.min);
+
+            Debug.Log(viewportRect.max);
+            Debug.Log(childRect.max);
             
-            if (childRect.yMax > contentRect.yMax)
+            if (vertical)
             {
-                scroller.content.position += Vector3.up*(contentRect.yMax - childRect.yMax);
-                Debug.Log("snap down");
+                if (childRect.yMax + padding > viewportRect.yMax)
+                {
+                    scroller.content.anchoredPosition += Vector2.up * (viewportRect.yMax - childRect.yMax - padding);
+                }
+                else if (childRect.yMin - padding < viewportRect.yMin)
+                {
+                    scroller.content.anchoredPosition += Vector2.up * (viewportRect.yMin - childRect.yMin + padding);
+                }
             }
-            else if (childRect.yMin < contentRect.yMin)
+
+            if (horizontal)
             {
-                scroller.content.position += Vector3.up * (contentRect.yMin - childRect.yMin);
-                Debug.Log("snap up");
+                if (childRect.xMax + padding > viewportRect.xMax)
+                {
+                    scroller.content.anchoredPosition += Vector2.right * (viewportRect.xMax - childRect.xMax - padding);
+                }
+                else if (childRect.xMin - padding < viewportRect.xMin)
+                {
+                    scroller.content.anchoredPosition += Vector2.right * (viewportRect.xMin - childRect.xMin + padding);
+                }
             }
         }
 

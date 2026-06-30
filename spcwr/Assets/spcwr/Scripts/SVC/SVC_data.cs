@@ -47,6 +47,7 @@ public class GameParameter
 {
     public string name;
     public float value;
+    public float step;
 }
 
 [Serializable]

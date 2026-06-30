@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 817668168555688688}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6583200164108149698}
+        m_TargetAssemblyTypeName: ParameterField, Assembly-CSharp
+        m_MethodName: StepPos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5137246701039268035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,7 +639,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2563644662589735450}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6583200164108149698}
+        m_TargetAssemblyTypeName: ParameterField, Assembly-CSharp
+        m_MethodName: StepNeg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4794562535927858016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,6 +723,7 @@ MonoBehaviour:
   inputField: {fileID: 7868587166176869906}
   leftButton: {fileID: 8243235945555367377}
   rightButton: {fileID: 8957849801527520518}
+  step: 0
 --- !u!114 &2916550686539297210
 MonoBehaviour:
   m_ObjectHideFlags: 0

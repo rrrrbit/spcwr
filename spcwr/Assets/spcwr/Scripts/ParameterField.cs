@@ -13,6 +13,8 @@ public class ParameterField : MonoBehaviour
     public Button leftButton;
     public Button rightButton;
 
+    public float step;
+
     UnityAction<string> showBtnsAction;
     UnityAction<string> hideBtnsAction;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,5 +25,15 @@ public class ParameterField : MonoBehaviour
 
         inputField.onSelect.AddListener(showBtnsAction);
         inputField.onDeselect.AddListener(hideBtnsAction);
+    }
+
+    public void StepPos()
+    {
+        inputField.text = (float.Parse(inputField.text)+step).ToString();
+    }
+
+    public void StepNeg()
+    {
+        inputField.text = (float.Parse(inputField.text) - step).ToString();
     }
 }

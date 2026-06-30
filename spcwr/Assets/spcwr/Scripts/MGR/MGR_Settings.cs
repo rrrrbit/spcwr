@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEditor.Progress;
@@ -34,8 +35,20 @@ public class MGR_Settings : MonoBehaviour
             var thisField = Instantiate(paramFieldPrefab, paramsContainer);
             thisField.text.text = (data.gameParameters[i].name + " ").PadRight(27, '-');
             thisField.inputField.text = data.gameParameters[i].value.ToString();
+            thisField.step = data.gameParameters[i].step;
             paramFields[i] = thisField;
         }
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("mainMenu");
+    }
+
+    public void Proceed() // KRIS!!!!!!!!!!!!!!!!!!!!!!!
+    {
+        SceneManager.LoadScene("game");
+
     }
 
     // Update is called once per frame
@@ -49,17 +62,20 @@ public class MGR_Settings : MonoBehaviour
             currentSelectable = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
         }
 
-        if (currentSelectable != null && currentSelectable.TryGetComponent<TMP_InputField>(out _))
+        if (currentSelectable != null && currentSelectable.TryGetComponent<TMP_InputField>(out var input))
         {
             if (navigateTimer.x == 0)
             {
                 if (navigate.x < 0)
                 {
+                    input.GetComponentInParent<ParameterField>().StepNeg();
                     print("go left");
                     navigateTimer.x = navigateTime;
                 }
                 else if (navigate.x > 0)
                 {
+                    input.GetComponentInParent<ParameterField>().StepPos();
+
                     print("go right");
                     navigateTimer.x = navigateTime;
                 }
@@ -70,14 +86,14 @@ public class MGR_Settings : MonoBehaviour
                 if (navigate.y < 0)
                 {
                     EventSystem.current.SetSelectedGameObject(currentSelectable.FindSelectableOnDown().gameObject);
-                    scrollRect.SnapTo((RectTransform)EventSystem.current.currentSelectedGameObject.transform);
+                    scrollRect.ScrollTo((RectTransform)EventSystem.current.currentSelectedGameObject.transform, 32);
                     print("go down");
                     navigateTimer.y = navigateTime;
                 }
                 else if (navigate.y > 0)
                 {
                     EventSystem.current.SetSelectedGameObject(currentSelectable.FindSelectableOnUp().gameObject);
-                    scrollRect.SnapTo((RectTransform)EventSystem.current.currentSelectedGameObject.transform);
+                    scrollRect.ScrollTo((RectTransform)EventSystem.current.currentSelectedGameObject.transform, 32);
 
                     print("go up");
                     navigateTimer.y = navigateTime;
