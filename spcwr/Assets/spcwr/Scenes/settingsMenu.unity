@@ -697,6 +697,8 @@ MonoBehaviour:
   paramsContainer: {fileID: 1686839818}
   paramFields: []
   inputModule: {fileID: 288428192}
+  scrollRect: {fileID: 45226644}
+  navigateTime: 0.15
 --- !u!1 &928401760
 GameObject:
   m_ObjectHideFlags: 0

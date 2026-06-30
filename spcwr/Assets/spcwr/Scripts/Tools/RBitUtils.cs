@@ -4,9 +4,50 @@ namespace RBitUtils
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
     using Unity.VisualScripting;
+    using Unity.VisualScripting.FullSerializer;
     using UnityEngine;
+    using UnityEngine.UI;
+    using UnityEngine.UIElements;
+
     public static class Misc
     {
+        public static void SnapTo(this ScrollRect scroller, RectTransform child)
+        {
+            Canvas.ForceUpdateCanvases();
+            var contentPos = (Vector2)scroller.transform.InverseTransformPoint(scroller.content.position);
+            var childPos = (Vector2)scroller.transform.InverseTransformPoint(child.position);
+
+            Rect contentRect = scroller.content.GetWorldRect();
+            Rect childRect = child.GetWorldRect();
+
+            Debug.Log(scroller.transform.InverseTransformPoint(contentRect.max));
+            Debug.Log(scroller.transform.InverseTransformPoint(childRect.max));
+            
+            if (childRect.yMax > contentRect.yMax)
+            {
+                scroller.content.position += Vector3.up*(contentRect.yMax - childRect.yMax);
+                Debug.Log("snap down");
+            }
+            else if (childRect.yMin < contentRect.yMin)
+            {
+                scroller.content.position += Vector3.up * (contentRect.yMin - childRect.yMin);
+                Debug.Log("snap up");
+            }
+        }
+
+        public static Rect GetWorldRect(this RectTransform rectTransform)
+        {
+            Vector3[] worldCorners = new Vector3[4];
+            rectTransform.GetWorldCorners(worldCorners);
+
+            Rect rect = new();
+
+            rect.min = worldCorners[0]; // bottom left corner
+            rect.max = worldCorners[2]; // top right corner
+
+            return rect;
+        }
+
         /// <summary>
         /// Check if a variable has changed since the last callback (using a buffer var) and if it has, invoke a callback.
         /// </summary>

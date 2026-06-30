@@ -1,9 +1,11 @@
+using RBitUtils;
 using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using static UnityEditor.Progress;
 
 public class MGR_Settings : MonoBehaviour
@@ -14,6 +16,11 @@ public class MGR_Settings : MonoBehaviour
     public ParameterField[] paramFields;
 
     public InputSystemUIInputModule inputModule;
+
+    public ScrollRect scrollRect;
+
+    [SerializeField] float navigateTime;
+    Vector2 navigateTimer;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,30 +41,50 @@ public class MGR_Settings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        var upDown = inputModule.move.ToInputAction().ReadValue<Vector2>().y;
+        navigateTimer = Vector2.Max(navigateTimer - Vector2.one * Time.deltaTime, Vector2.zero);
+        Vector2 navigate = inputModule.move.ToInputAction().ReadValue<Vector2>();
         Selectable currentSelectable = null;
         if (EventSystem.current.currentSelectedGameObject != null)
         {
             currentSelectable = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
-            print("found selectable");
         }
 
         if (currentSelectable != null && currentSelectable.TryGetComponent<TMP_InputField>(out _))
         {
-            print("selectable is input field");
-            if (upDown < 0)
+            if (navigateTimer.x == 0)
             {
-                EventSystem.current.SetSelectedGameObject(currentSelectable.FindSelectableOnDown().gameObject);
-                print("go down");
+                if (navigate.x < 0)
+                {
+                    print("go left");
+                    navigateTimer.x = navigateTime;
+                }
+                else if (navigate.x > 0)
+                {
+                    print("go right");
+                    navigateTimer.x = navigateTime;
+                }
             }
-            else if (upDown > 0)
+
+            if (navigateTimer.y == 0)
             {
-                EventSystem.current.SetSelectedGameObject(currentSelectable.FindSelectableOnUp().gameObject);
-                print("go up");
+                if (navigate.y < 0)
+                {
+                    EventSystem.current.SetSelectedGameObject(currentSelectable.FindSelectableOnDown().gameObject);
+                    scrollRect.SnapTo((RectTransform)EventSystem.current.currentSelectedGameObject.transform);
+                    print("go down");
+                    navigateTimer.y = navigateTime;
+                }
+                else if (navigate.y > 0)
+                {
+                    EventSystem.current.SetSelectedGameObject(currentSelectable.FindSelectableOnUp().gameObject);
+                    scrollRect.SnapTo((RectTransform)EventSystem.current.currentSelectedGameObject.transform);
 
-
+                    print("go up");
+                    navigateTimer.y = navigateTime;
+                }
             }
+            
+            
         }
         
     }
